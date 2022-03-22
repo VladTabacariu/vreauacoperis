@@ -58,7 +58,7 @@ const HeaderAction = () => {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const items = Links.map((link) => {
     const menuItems = link.links?.map((item) => (
-      <Link key={item.link} href={item.link}>
+      <Link key={item.link} href={item.link} passHref>
         <Menu.Item key={item.link}>
           <a>{item.label}</a>
         </Menu.Item>
@@ -74,14 +74,12 @@ const HeaderAction = () => {
           placement="end"
           gutter={1}
           control={
-            //<Link href={link.link}>
             <a href={link.link} className={classes.link} onClick={(event) => event.preventDefault()}>
               <Center>
                 <span className={classes.linkLabel}>{link.label}</span>
                 <ChevronDown size={12} />
               </Center>
             </a>
-            //</Link>
           }
         >
           {menuItems}
