@@ -90,7 +90,8 @@ const Hero = () => {
         <Title className={classes.title}>Cât ne costă acoperișul,</Title>
         <Title className={classes.title}>din țiglă metalică?</Title>
         <Text className={classes.description} size="xl" mt="xl">
-          Atunci când începem să construim casa noastră apare întrebarea "Cât ne costă acoperișul?" Apasă butonul de mai jos si urmărește toți pașii!
+          Atunci când începem să construim casa noastră apare întrebarea &quot;Cât ne costă acoperișul?&quot; Apasă butonul de mai jos si urmărește
+          toți pașii!
         </Text>
         <Link href="/catcosta">
           <a>
