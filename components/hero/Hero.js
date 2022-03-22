@@ -95,7 +95,7 @@ const Hero = () => {
         </Text>
         <Link href="/catcosta">
           <a>
-            <Button variant="gradient" size="xl" radius="xl" className={classes.control}>
+            <Button color="myGreen" variant="gradient" size="xl" radius="xl" className={classes.control}>
               Hai să aflăm!
             </Button>
           </a>
