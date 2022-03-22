@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import HeaderAction from '../components/header/HeaderAction.js'
-import { MantineProvider } from '@mantine/core';
-import '../styles/globals.css'
+import Head from "next/head";
+import HeaderAction from "../components/header/HeaderAction.js";
+import { MantineProvider } from "@mantine/core";
+import "../styles/globals.css";
 
-export default function App( props ) {
+export default function App(props) {
   const { Component, pageProps } = props;
 
   return (
@@ -18,15 +18,15 @@ export default function App( props ) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: 'light',
+          colorScheme: "light",
           colors: {
-            'oceanBlue': ['#7AD1DD', '#5FCCDB', '#44CADC', '#2AC9DE', '#1AC2D9', '#11B7CD', '#09ADC3', '#0E99AC', '#128797', '#147885'],
-            'brightPink': ['#F0BBDD', '#ED9BCF', '#EC7CC3', '#ED5DB8', '#F13EAF', '#F71FA7', '#FF00A1', '#E00890', '#C50E82', '#AD1374'],
+            oceanBlue: ["#7AD1DD", "#5FCCDB", "#44CADC", "#2AC9DE", "#1AC2D9", "#11B7CD", "#09ADC3", "#0E99AC", "#128797", "#147885"],
+            brightPink: ["#F0BBDD", "#ED9BCF", "#EC7CC3", "#ED5DB8", "#F13EAF", "#F71FA7", "#FF00A1", "#E00890", "#C50E82", "#AD1374"],
           },
-          primaryColor: 'oceanBlue'
+          primaryColor: "oceanBlue",
         }}
       >
-        <HeaderAction/>
+        <HeaderAction />
         <Component {...pageProps} />
       </MantineProvider>
     </>
