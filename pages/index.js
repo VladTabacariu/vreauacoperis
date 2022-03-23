@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Hero from "../components/hero/Hero.js";
+import FeaturesGrid from "../components/features/FeaturesGrid.js";
 import styles from "../styles/Home.module.css";
 import { supabase } from "../utils/supabaseClient";
 
@@ -7,6 +8,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Hero data={props} />
+      <FeaturesGrid title="Serviciile noastre vă vor scuti de timp și bani!" description="" />
       <main className={styles.main}></main>
       <footer className={styles.footer}>
         <a

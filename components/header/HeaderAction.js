@@ -111,7 +111,7 @@ const HeaderAction = () => {
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
-        <Button radius="xl" sx={{ height: 30 }}>
+        <Button variant="outline" radius="xl" sx={{ height: 30 }}>
           Cât costă?
         </Button>
       </Container>
