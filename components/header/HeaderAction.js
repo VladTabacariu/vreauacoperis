@@ -111,9 +111,11 @@ const HeaderAction = () => {
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
-        <Button variant="outline" radius="xl" sx={{ height: 30 }}>
-          Cât costă?
-        </Button>
+        <Link href="/catcosta">
+          <Button variant="outline" radius="xl" sx={{ height: 30 }}>
+            <a>Cât costă?</a>
+          </Button>
+        </Link>
       </Container>
       <Drawer opened={opened} onClose={() => toggleOpened()} title="Menu" padding="xl" size="lg">
         {items}
