@@ -28,6 +28,11 @@ const useStyles = createStyles((theme) => ({
   grid: {
     paddingLeft: theme.spacing.xl * 4,
     paddingRight: theme.spacing.xl * 4,
+
+    [theme.fn.smallerThan("sm")]: {
+      paddingLeft: theme.spacing.xl * 2,
+      paddingRight: theme.spacing.xl * 2,
+    },
   },
 
   title: {
