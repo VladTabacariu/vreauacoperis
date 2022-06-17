@@ -2,20 +2,54 @@ import { Container, Stepper, Button, Group } from "@mantine/core";
 import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
 import jsonata from "jsonata";
+import Tigla from "../components/catcosta/Tigla.js";
 
 const catcosta = (props) => {
-  console.log(jsonata("carouselData.Proprietati.model").evaluate(props));
+  console.log(props);
 
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+
+  const oferta = {
+    producator: "",
+    tigla: {
+      model: "",
+      finisaj: "",
+      grosime: "",
+      culoare: "",
+      mp: 0,
+      pret: 0,
+      total: 0,
+    },
+    piese_finisaj: { finisaj: "", grosime: "", culoare: "", piese: [{ nume: "", pret: 0, cantitate: 0, total: 0 }] },
+    accesorii: [
+      {
+        nume: "",
+        pret: 0,
+        cantitate: 0,
+        total: 0,
+      },
+    ],
+    sistem_pluvial: [
+      {
+        nume: "",
+        dimensiune: "",
+        culoare: "",
+        pret: 0,
+        cantitate: 0,
+        total: 0,
+      },
+    ],
+    ferestre_mansarda: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }],
+  };
 
   return (
     <>
       <Container>
         <Stepper active={active} onStepClick={setActive} breakpoint="sm">
-          <Stepper.Step label="First step" description="Create an account" allowStepSelect={active > 0}>
-            Step 1 content: Create an account
+          <Stepper.Step label="Tigla" description="Alege tigla metalica" allowStepSelect={active > 0}>
+            <Tigla oferta={oferta} products={props.productsData} />
           </Stepper.Step>
           <Stepper.Step label="Second step" description="Verify email" allowStepSelect={active > 1}>
             Step 2 content: Verify email
@@ -40,12 +74,12 @@ const catcosta = (props) => {
 export default catcosta;
 
 export const getServerSideProps = async () => {
-  const { data: carouselData, error: carouselError } = await supabase.from("BILKA_PRODUCTS").select();
+  const { data: productsData, error: productsError } = await supabase.from("TIGLA").select();
 
   return {
     props: {
-      carouselData,
-      carouselError,
+      productsData,
+      productsError,
     },
   };
 };
