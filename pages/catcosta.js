@@ -4,44 +4,45 @@ import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj";
 
-const [active, setActive] = useState(0);
-const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
-const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
-const [oferta, setOferta] = useState({
-  producator: "",
-  tigla: {
-    model: "",
-    finisaj: "",
-    grosime: "",
-    culoare: "",
-    suprafata: 0,
-    pret: 0,
-    total: 0,
-  },
-  piese_finisaj: { finisaj: "", grosime: "", culoare: "", piese: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }] },
-  accesorii: [
-    {
-      nume: "",
-      pret: 0,
-      cantitate: 0,
-      total: 0,
-    },
-  ],
-  sistem_pluvial: [
-    {
-      nume: "",
-      dimensiune: "",
-      culoare: "",
-      pret: 0,
-      cantitate: 0,
-      total: 0,
-    },
-  ],
-  ferestre_mansarda: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }],
-});
-
-const catcosta = (props) => {
+const Catcosta = (props) => {
   console.log(props);
+
+  const [active, setActive] = useState(0);
+  const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
+  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+
+  const [oferta, setOferta] = useState({
+    producator: "",
+    tigla: {
+      model: "",
+      finisaj: "",
+      grosime: "",
+      culoare: "",
+      suprafata: 0,
+      pret: 0,
+      total: 0,
+    },
+    piese_finisaj: { finisaj: "", grosime: "", culoare: "", piese: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }] },
+    accesorii: [
+      {
+        nume: "",
+        pret: 0,
+        cantitate: 0,
+        total: 0,
+      },
+    ],
+    sistem_pluvial: [
+      {
+        nume: "",
+        dimensiune: "",
+        culoare: "",
+        pret: 0,
+        cantitate: 0,
+        total: 0,
+      },
+    ],
+    ferestre_mansarda: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }],
+  });
 
   return (
     <>
@@ -66,7 +67,7 @@ const catcosta = (props) => {
   );
 };
 
-export default catcosta;
+export default Catcosta;
 
 export const getServerSideProps = async () => {
   const { data: productsData, error: productsError } = await supabase.from("TIGLA").select();
