@@ -4,7 +4,7 @@ import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj";
 
-const catcosta = (props) => {
+const Catcosta = (props) => {
   console.log(props);
 
   const [active, setActive] = useState(0);
@@ -67,7 +67,7 @@ const catcosta = (props) => {
   );
 };
 
-export default catcosta;
+export default Catcosta;
 
 export const getServerSideProps = async () => {
   const { data: productsData, error: productsError } = await supabase.from("TIGLA").select();
