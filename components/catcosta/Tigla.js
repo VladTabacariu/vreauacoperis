@@ -47,9 +47,7 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
       suprafata: values.finisaj == "" ? "Introdu suprafata" : null,
     }),
   });
-  console.log({ ...form.getInputProps("model") });
   const updateFiels = (model, finisaj, grosime, culoare, suprafata) => {
-    console.log(model, finisaj, grosime, culoare);
     const finisaje = [];
     const grosimi = [];
     const culori = [];
@@ -100,7 +98,6 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
       ...prevState,
       tigla: { model: model, finisaj: finisaj, grosime: grosime, culoare: culoare, pret: pret, suprafata: suprafata, total: total },
     }));
-    console.log(form.values);
   };
   const changedModel = (value) => {
     form.setFieldValue("model", value);

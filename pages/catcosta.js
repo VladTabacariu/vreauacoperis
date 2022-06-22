@@ -6,7 +6,6 @@ import PieseFinisaj from "../components/catcosta/PieseFinisaj";
 
 const Catcosta = (props) => {
   console.log(props);
-
   const [active, setActive] = useState(0);
   const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
@@ -14,15 +13,15 @@ const Catcosta = (props) => {
   const [oferta, setOferta] = useState({
     producator: "",
     tigla: {
-      model: "",
-      finisaj: "",
-      grosime: "",
-      culoare: "",
-      suprafata: 0,
-      pret: 0,
-      total: 0,
+      model: "CLASIC",
+      finisaj: "MAT",
+      grosime: "0.50",
+      culoare: "3005",
+      suprafata: 200,
+      pret: 1,
+      total: 200,
     },
-    piese_finisaj: { finisaj: "", grosime: "", culoare: "", piese: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }] },
+    piese_finisaj: { finisaj: "", grosime: "", culoare: "", piese: [{ nume: "", pret: 0, cantitate: 0, total: 0 }] },
     accesorii: [
       {
         nume: "",
