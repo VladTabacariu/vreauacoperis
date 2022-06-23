@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Stepper, Button, Group } from "@mantine/core";
+import { Container, Stepper, Button, Group, Text } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj";
@@ -50,7 +50,7 @@ const Catcosta = (props) => {
           <Stepper.Step label="Tigla" description="Alege tigla metalica" allowStepSelect={active > 0}>
             <Tigla oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Step label="Accesorii" description="Accesorii tigla metalica" allowStepSelect={active > 1}>
+          <Stepper.Step label="Piese de finisaj" description="Piese de finisaj tigla metalica" allowStepSelect={active > 1}>
             <PieseFinisaj oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
           <Stepper.Step label="Accesorii" description="Accesorii auxiliare" allowStepSelect={active > 2}>

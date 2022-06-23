@@ -1,8 +1,9 @@
-import { Select, NumberInput, TextInput, Checkbox, Button, Group, Box, Text, createStyles, Table } from "@mantine/core";
+import { Select, NumberInput, TextInput, Checkbox, Button, Group, Box, Text, createStyles, Table, ActionIcon } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useForm, formList } from "@mantine/form";
 import { useState } from "react";
 import jsonata from "jsonata";
+import { Trash } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
   inputWrapper: {
@@ -26,9 +27,10 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
   const fields = form.values.piese.map((item, index) => (
     <Group key={item.key} mt="xs">
       <Select placeholder="Selecteaza" data={nume_piese} onChange={changedNume} {...form.getListInputProps("piese", index, "nume")} sx={{ flex: 3 }} />
-      <NumberInput sx={{ flex: 1 }} />
-      <NumberInput sx={{ flex: 1 }} />
-      <NumberInput sx={{ flex: 1 }} />
+      <NumberInput defaultValue={0} min={0} sx={{ flex: 1 }} />
+      <ActionIcon color="red" variant="hover" onClick={() => form.removeListItem("piese", index)} sx={{ flex: 0.5 }}>
+        <Trash size={16} />
+      </ActionIcon>
     </Group>
   ));
   const handleSubmit = (values) => {
@@ -46,18 +48,13 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
                 Nume
               </Text>
               <Text weight={500} size="sm" sx={{ flex: 1 }}>
-                Pret
-              </Text>
-              <Text weight={500} size="sm" sx={{ flex: 1 }}>
                 Cantitate
               </Text>
-              <Text weight={500} size="sm" sx={{ flex: 1 }}>
-                Total
-              </Text>
+              <Text size="sm" sx={{ flex: 0.5 }} />
             </Group>
           ) : (
             <Text color="dimmed" align="center">
-              No one here...
+              Adauga o piesa de finisaj...
             </Text>
           )}
 
