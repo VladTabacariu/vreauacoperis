@@ -97,6 +97,7 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     setOferta((prevState) => ({
       ...prevState,
       tigla: { model: model, finisaj: finisaj, grosime: grosime, culoare: culoare, pret: pret, suprafata: suprafata, total: total },
+      piese_finisaj: { finisaj: finisaj, grosime: grosime, culoare: culoare, total: oferta.piese_finisaj.total, piese: oferta.piese_finisaj.piese },
     }));
   };
   const changedModel = (value) => {

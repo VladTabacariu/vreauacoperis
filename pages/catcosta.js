@@ -3,6 +3,7 @@ import { Container, Stepper, Button, Group, Text } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj";
+import { randomId } from "@mantine/hooks";
 
 const Catcosta = (props) => {
   console.log(props);
@@ -21,7 +22,7 @@ const Catcosta = (props) => {
       pret: 1,
       total: 200,
     },
-    piese_finisaj: { finisaj: "", grosime: "", culoare: "", piese: [{ nume: "", pret: 0, cantitate: 0, total: 0 }] },
+    piese_finisaj: { finisaj: "MAT", grosime: "0.50", culoare: "3005", total: 0, piese: [{ nume: "", pret: 0, cantitate: 0, total: 0, key: randomId() }] },
     accesorii: [
       {
         nume: "",
