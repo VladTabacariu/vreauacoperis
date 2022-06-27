@@ -94,6 +94,10 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
       form.setFieldValue("total", total);
     }
 
+    //Calculate piese
+
+    const piese = [{}];
+
     setOferta((prevState) => ({
       ...prevState,
       tigla: { model: model, finisaj: finisaj, grosime: grosime, culoare: culoare, pret: pret, suprafata: suprafata, total: total },
@@ -127,7 +131,6 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   };
   const changedSuprafata = (value) => {
     form.setFieldValue("suprafata", value);
-    //form.setFieldValue("total", form.values.pret * form.values.suprafata);
     updateFiels(form.values.model, form.values.finisaj, form.values.grosime, form.values.culoare, value);
   };
   const handleSubmit = (values) => {
@@ -137,45 +140,47 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Select
-          label="Model"
-          description="Selectează un model"
-          placeholder="Selectează"
-          data={modele}
-          onChange={changedModel}
-          value={form.values.model}
-          error={form.getInputProps("model").error}
-        />
-        <Select
-          label="Finisaj"
-          description="Selectează finisajul"
-          placeholder="Selectează"
-          data={finisaje}
-          onChange={changedFinisaj}
-          disabled={inputsState.finisaj}
-          value={form.values.finisaj}
-          error={form.getInputProps("finisaj").error}
-        />
-        <Select
-          label="Grosime"
-          description="Selectează grosimea"
-          placeholder="Selectează"
-          data={grosimi}
-          onChange={changedGrosime}
-          disabled={inputsState.grosime}
-          value={form.values.grosime}
-          error={form.getInputProps("grosime").error}
-        />
-        <Select
-          label="Culoare"
-          description="Selectează culoarea"
-          placeholder="Selectează"
-          data={culori}
-          onChange={changedCuloare}
-          disabled={inputsState.culoare}
-          value={form.values.culoare}
-          error={form.getInputProps("culoare").error}
-        />
+        <Group>
+          <Select
+            label="Model"
+            description="Selectează un model"
+            placeholder="Selectează"
+            data={modele}
+            onChange={changedModel}
+            value={form.values.model}
+            error={form.getInputProps("model").error}
+          />
+          <Select
+            label="Finisaj"
+            description="Selectează finisajul"
+            placeholder="Selectează"
+            data={finisaje}
+            onChange={changedFinisaj}
+            disabled={inputsState.finisaj}
+            value={form.values.finisaj}
+            error={form.getInputProps("finisaj").error}
+          />
+          <Select
+            label="Grosime"
+            description="Selectează grosimea"
+            placeholder="Selectează"
+            data={grosimi}
+            onChange={changedGrosime}
+            disabled={inputsState.grosime}
+            value={form.values.grosime}
+            error={form.getInputProps("grosime").error}
+          />
+          <Select
+            label="Culoare"
+            description="Selectează culoarea"
+            placeholder="Selectează"
+            data={culori}
+            onChange={changedCuloare}
+            disabled={inputsState.culoare}
+            value={form.values.culoare}
+            error={form.getInputProps("culoare").error}
+          />
+        </Group>
         <NumberInput
           styles={{
             input: { fontSize: 14, fontWeight: "bold" },

@@ -29,6 +29,7 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
   const updateField = (nume, cantitate, index) => {
     const pret = 0;
     const total = 0;
+    const piese = [];
     if (nume && cantitate) {
       pret = jsonata(
         "*[(grup='piese_finisaj') and (nume='" +
@@ -51,26 +52,32 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
       form.values.piese.forEach((item, i) => {
         if (i != index) {
           sum = sum + item.total;
+          piese.push(item);
+        } else {
+          piese.push({ nume: nume, cantitate: cantitate, pret: pret, total: pret * cantitate, key: item.key });
         }
       });
       total = sum + pret * cantitate;
       form.setFieldValue("total", total);
       setOferta((prevState) => ({
         ...prevState,
-        piese_finisaj: { ...oferta.piese_finisaj, piese: formList(form.values.piese), total: total },
+        piese_finisaj: { ...oferta.piese_finisaj, piese: formList(piese), total: total },
       }));
     } else {
       const sum = 0;
       form.values.piese.forEach((item, i) => {
         if (i != index) {
           sum = sum + item.total;
+          piese.push(item);
+        } else {
+          piese.push({ nume: nume, cantitate: cantitate, pret: pret, total: pret * cantitate, key: item.key });
         }
       });
       total = sum + pret * cantitate;
       form.setFieldValue("total", total);
       setOferta((prevState) => ({
         ...prevState,
-        piese_finisaj: { ...oferta.piese_finisaj, piese: formList(form.values.piese), total: total },
+        piese_finisaj: { ...oferta.piese_finisaj, piese: formList(piese), total: total },
       }));
     }
   };
@@ -137,6 +144,7 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
     console.log(values);
     nextStep();
   };
+  console.log(form.values);
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>

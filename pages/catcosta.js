@@ -22,7 +22,7 @@ const Catcosta = (props) => {
       pret: 1,
       total: 200,
     },
-    piese_finisaj: { finisaj: "MAT", grosime: "0.50", culoare: "3005", total: 0, piese: [{ nume: "", pret: 0, cantitate: 0, total: 0, key: randomId() }] },
+    piese_finisaj: { finisaj: "MAT", grosime: "0.50", culoare: "3005", total: 0, piese: [{ nume: "", cantitate: 0, pret: 0, total: 0, key: randomId() }] },
     accesorii: [
       {
         nume: "",
