@@ -133,8 +133,38 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     form.setFieldValue("suprafata", value);
     updateFiels(form.values.model, form.values.finisaj, form.values.grosime, form.values.culoare, value);
   };
+  const updatePiese = () => {
+    let piese = oferta.piese_finisaj.piese;
+    let pieseNew = [];
+    let pret = 0;
+    let total = 0;
+    piese.forEach((item) => {
+      pret = jsonata(
+        "*[(grup='piese_finisaj') and (nume='" +
+          item.nume +
+          "') and (props.finisaj='" +
+          oferta.piese_finisaj.finisaj +
+          "') and(props.grosime='" +
+          oferta.piese_finisaj.grosime +
+          "')].pret_lista"
+      ).evaluate(products);
+      pieseNew.push({
+        nume: item.nume,
+        cantitate: item.cantitate,
+        pret: pret,
+        total: pret * item.cantitate,
+        key: item.key,
+      });
+    });
+    total = jsonata("$sum(*[].total)").evaluate(pieseNew);
+    setOferta((prevState) => ({
+      ...prevState,
+      piese_finisaj: { ...oferta.piese_finisaj, total: total, piese: pieseNew },
+    }));
+  };
   const handleSubmit = (values) => {
     console.log(values);
+    updatePiese();
     nextStep();
   };
   return (

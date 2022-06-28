@@ -1,9 +1,8 @@
-import { Select, NumberInput, TextInput, Checkbox, Button, Group, Box, Text, createStyles, Table, ActionIcon, Center } from "@mantine/core";
+import { Select, NumberInput, Button, Group, Box, Text, createStyles, ActionIcon, Center } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useForm, formList } from "@mantine/form";
-import { useState } from "react";
 import jsonata from "jsonata";
-import { Forms, Trash } from "tabler-icons-react";
+import { Trash } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
   inputWrapper: {
@@ -30,7 +29,8 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
     const pret = 0;
     const total = 0;
     const piese = [];
-    if (nume && cantitate) {
+    if (nume && cantitate >= 0) {
+      console.log(nume, cantitate, index, form.values.piese);
       pret = jsonata(
         "*[(grup='piese_finisaj') and (nume='" +
           nume +
@@ -76,8 +76,12 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
     }
   };
   const deleteItem = (index) => {
-    const piese = form.values.piese.slice(index, index + 1);
-    let total = jsonata("$sum(*[].total)").evaluate(piese);
+    const piese = form.values.piese;
+    const pieseNew = piese.splice(index, 1);
+    let total = 0;
+    if (piese.length) {
+      total = jsonata("$sum(*[].total)").evaluate(piese);
+    }
     form.setFieldValue("total", total);
     setOferta((prevState) => ({
       ...prevState,
@@ -90,24 +94,10 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
   };
 
   const changedNume = (value, index) => {
-    form.setListItem("piese", index, {
-      nume: value,
-      cantitate: form.values.piese[index].cantitate,
-      pret: form.values.piese[index].pret,
-      total: form.values.piese[index].total,
-      key: form.values.piese[index].key,
-    });
     updateField(value, form.values.piese[index].cantitate, index);
   };
 
   const changedCantitate = (value, index) => {
-    form.setListItem("piese", index, {
-      nume: form.values.piese[index].nume,
-      cantitate: value,
-      pret: form.values.piese[index].pret,
-      total: form.values.piese[index].total,
-      key: form.values.piese[index].key,
-    });
     updateField(form.values.piese[index].nume, value, index);
   };
 
@@ -125,6 +115,7 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
       />
       <NumberInput
         defaultValue={0}
+        hideControls={true}
         min={0}
         sx={{ flex: 1 }}
         onChange={(event) => {
@@ -190,7 +181,17 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
             </Button>
           </Group>
           <Center mt={20}>
-            <NumberInput precision={2} defaultValue={0} label="Total" value={form.values.total} disabled />
+            <NumberInput
+              styles={{
+                input: { fontSize: 14, fontWeight: "bold" },
+                disabled: { color: "#000000 !important" },
+              }}
+              precision={2}
+              defaultValue={0}
+              label="Total"
+              value={form.values.total}
+              disabled
+            />
           </Center>
         </Box>
         <Group position="center" mt="xl">

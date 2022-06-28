@@ -3,6 +3,7 @@ import { Container, Stepper, Button, Group, Text } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj";
+import Accesorii from "../components/catcosta/Accesorii";
 import { randomId } from "@mantine/hooks";
 
 const Catcosta = (props) => {
@@ -22,7 +23,7 @@ const Catcosta = (props) => {
       pret: 1,
       total: 200,
     },
-    piese_finisaj: { finisaj: "MAT", grosime: "0.50", culoare: "3005", total: 0, piese: [{ nume: "", cantitate: 0, pret: 0, total: 0, key: randomId() }] },
+    piese_finisaj: { finisaj: "MAT", grosime: "0.50", culoare: "3005", total: 0, piese: [{ nume: "COAMA MICA", cantitate: 1, pret: 7, total: 7, key: randomId() }] },
     accesorii: [
       {
         nume: "",
@@ -55,9 +56,12 @@ const Catcosta = (props) => {
             <PieseFinisaj oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
           <Stepper.Step label="Accesorii" description="Accesorii auxiliare" allowStepSelect={active > 2}>
-            Step 3 content: Get full access
+            <Accesorii oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
           <Stepper.Step label="Sistem pluvial" description="Sistem pluvial" allowStepSelect={active > 3}>
+            Step 3 content: Get full access
+          </Stepper.Step>
+          <Stepper.Step label="Ferestre mansarda" description="Ferestre mansarda" allowStepSelect={active > 3}>
             Step 3 content: Get full access
           </Stepper.Step>
           <Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
