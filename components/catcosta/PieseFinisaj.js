@@ -4,14 +4,7 @@ import { useForm, formList } from "@mantine/form";
 import jsonata from "jsonata";
 import { Trash } from "tabler-icons-react";
 
-const useStyles = createStyles((theme) => ({
-  inputWrapper: {
-    width: "100px",
-  },
-}));
-
 function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
-  const { classes } = useStyles();
   const nume_piese = jsonata("$distinct(*[grup='piese_finisaj'].nume)").evaluate(products);
   const form = useForm({
     initialValues: {
@@ -92,15 +85,12 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
       },
     }));
   };
-
   const changedNume = (value, index) => {
     updateField(value, form.values.piese[index].cantitate, index);
   };
-
   const changedCantitate = (value, index) => {
     updateField(form.values.piese[index].nume, value, index);
   };
-
   const fields = form.values.piese.map((item, index) => (
     <Group key={item.key} mt="xs">
       <Select

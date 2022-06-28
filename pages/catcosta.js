@@ -23,26 +23,42 @@ const Catcosta = (props) => {
       pret: 1,
       total: 200,
     },
-    piese_finisaj: { finisaj: "MAT", grosime: "0.50", culoare: "3005", total: 0, piese: [{ nume: "COAMA MICA", cantitate: 1, pret: 7, total: 7, key: randomId() }] },
-    accesorii: [
-      {
-        nume: "",
-        pret: 0,
-        cantitate: 0,
-        total: 0,
-      },
-    ],
-    sistem_pluvial: [
-      {
-        nume: "",
-        dimensiune: "",
-        culoare: "",
-        pret: 0,
-        cantitate: 0,
-        total: 0,
-      },
-    ],
-    ferestre_mansarda: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }],
+    piese_finisaj: {
+      finisaj: "MAT",
+      grosime: "0.50",
+      culoare: "3005",
+      total: 0,
+      piese: [{ nume: "COAMA MICA", cantitate: 1, pret: 7, total: 7, key: randomId() }],
+    },
+    accesorii: {
+      elemente: [
+        {
+          nume: "",
+          pret: 0,
+          cantitate: 0,
+          total: 0,
+          key: randomId(),
+        },
+      ],
+      total: 0,
+    },
+    sistem_pluvial: {
+      elemente: [
+        {
+          nume: "",
+          dimensiune: "",
+          culoare: "",
+          pret: 0,
+          cantitate: 0,
+          total: 0,
+        },
+      ],
+      total: 0,
+    },
+    ferestre_mansarda: {
+      elemente: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }],
+      total: 0,
+    },
   });
 
   return (
