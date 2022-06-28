@@ -54,32 +54,39 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
           sum = sum + item.total;
           piese.push(item);
         } else {
-          piese.push({ nume: nume, cantitate: cantitate, pret: pret, total: pret * cantitate, key: item.key });
+          piese.push({
+            nume: nume,
+            cantitate: cantitate,
+            pret: pret,
+            total: pret * cantitate,
+            key: item.key,
+          });
         }
       });
       total = sum + pret * cantitate;
       form.setFieldValue("total", total);
       setOferta((prevState) => ({
         ...prevState,
-        piese_finisaj: { ...oferta.piese_finisaj, piese: formList(piese), total: total },
-      }));
-    } else {
-      const sum = 0;
-      form.values.piese.forEach((item, i) => {
-        if (i != index) {
-          sum = sum + item.total;
-          piese.push(item);
-        } else {
-          piese.push({ nume: nume, cantitate: cantitate, pret: pret, total: pret * cantitate, key: item.key });
-        }
-      });
-      total = sum + pret * cantitate;
-      form.setFieldValue("total", total);
-      setOferta((prevState) => ({
-        ...prevState,
-        piese_finisaj: { ...oferta.piese_finisaj, piese: formList(piese), total: total },
+        piese_finisaj: {
+          ...oferta.piese_finisaj,
+          piese: formList(piese),
+          total: total,
+        },
       }));
     }
+  };
+  const deleteItem = (index) => {
+    const piese = form.values.piese.slice(index, index + 1);
+    let total = jsonata("$sum(*[].total)").evaluate(piese);
+    form.setFieldValue("total", total);
+    setOferta((prevState) => ({
+      ...prevState,
+      piese_finisaj: {
+        ...oferta.piese_finisaj,
+        piese: formList(piese),
+        total: total,
+      },
+    }));
   };
 
   const changedNume = (value, index) => {
@@ -131,7 +138,7 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
         variant="hover"
         onClick={() => {
           form.removeListItem("piese", index);
-          updateField("", "", index);
+          deleteItem(index);
         }}
         sx={{ flex: 0.5 }}
       >
@@ -168,7 +175,19 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
           {fields}
 
           <Group position="center" mt="md">
-            <Button onClick={() => form.addListItem("piese", { nume: "", cantitate: 0, pret: 0, total: 0, key: randomId() })}>Adauga piesa</Button>
+            <Button
+              onClick={() =>
+                form.addListItem("piese", {
+                  nume: "",
+                  cantitate: 0,
+                  pret: 0,
+                  total: 0,
+                  key: randomId(),
+                })
+              }
+            >
+              Adauga piesa
+            </Button>
           </Group>
           <Center mt={20}>
             <NumberInput precision={2} defaultValue={0} label="Total" value={form.values.total} disabled />
