@@ -4,6 +4,7 @@ import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj";
 import Accesorii from "../components/catcosta/Accesorii";
+import SistemPluvial from "../components/catcosta/SistemPluvial";
 import { randomId } from "@mantine/hooks";
 
 const Catcosta = (props) => {
@@ -33,24 +34,25 @@ const Catcosta = (props) => {
     accesorii: {
       elemente: [
         {
+          nume: "FOLIE ANTICONDENS 95GR",
+          pret: 2,
+          cantitate: 1,
+          total: 2,
+          key: randomId(),
+        },
+      ],
+      total: 2,
+    },
+    sistem_pluvial: {
+      dimensiune: "SISTEM MIC",
+      culoare: "3005",
+      elemente: [
+        {
           nume: "",
           pret: 0,
           cantitate: 0,
           total: 0,
           key: randomId(),
-        },
-      ],
-      total: 0,
-    },
-    sistem_pluvial: {
-      elemente: [
-        {
-          nume: "",
-          dimensiune: "",
-          culoare: "",
-          pret: 0,
-          cantitate: 0,
-          total: 0,
         },
       ],
       total: 0,
@@ -75,7 +77,7 @@ const Catcosta = (props) => {
             <Accesorii oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
           <Stepper.Step label="Sistem pluvial" description="Sistem pluvial" allowStepSelect={active > 3}>
-            Step 3 content: Get full access
+            <SistemPluvial oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
           <Stepper.Step label="Ferestre mansarda" description="Ferestre mansarda" allowStepSelect={active > 3}>
             Step 3 content: Get full access

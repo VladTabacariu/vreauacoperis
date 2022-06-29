@@ -4,16 +4,24 @@ import { useForm, formList } from "@mantine/form";
 import jsonata from "jsonata";
 import { Trash } from "tabler-icons-react";
 
-function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
-  const nume_produse = jsonata("$distinct(*[grup='accesorii'].nume)[]").evaluate(products);
+function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
+  const nume_produse = jsonata("$distinct(*[grup='sistem_pluvial'].nume)[]").evaluate(products);
+  const dimensiuni = jsonata("$distinct(*[grup='sistem_pluvial'].props.dimensiune)[]").evaluate(products);
+  const culori = jsonata("$distinct(*[grup='sistem_pluvial'].props.culori)[]").evaluate(products);
+  console.log(dimensiuni);
+  console.log(nume_produse);
   const form = useForm({
     initialValues: {
-      elemente: formList(oferta.accesorii.elemente),
-      total: oferta.accesorii.total,
+      dimensiune: oferta.sistem_pluvial.dimensiune,
+      culoare: oferta.sistem_pluvial.culoare,
+      elemente: formList(oferta.sistem_pluvial.elemente),
+      total: oferta.sistem_pluvial.total,
     },
     validate: {
+      dimensiune: (value) => (value == "" ? "Selecteaza dimensiunea..." : null),
+      culoare: (value) => (value == "" ? "Selecteaza culoarea..." : null),
       elemente: {
-        nume: (value) => (value == "" ? "Selecteaza un accesoriu..." : null),
+        nume: (value) => (value == "" ? "Selecteaza un element..." : null),
         cantitate: (value) => (value == 0 ? "Introdu cantitatea..." : null),
       },
     },
@@ -24,7 +32,7 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && cantitate >= 0) {
-      pret = jsonata("*[(grup='accesorii') and (nume='" + nume + "')].pret_lista").evaluate(products);
+      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + nume + "')].pret_lista").evaluate(products);
       form.setListItem("elemente", index, {
         nume: nume,
         cantitate: cantitate,
@@ -51,14 +59,15 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
       form.setFieldValue("total", total);
       setOferta((prevState) => ({
         ...prevState,
-        accesorii: {
-          ...oferta.accesorii,
+        sistem_pluvial: {
+          ...oferta.sistem_pluvial,
           elemente: formList(elemente),
           total: total,
         },
       }));
     }
   };
+  const updateFields = (dimensiune, culoare) => {};
   const deleteItem = (index) => {
     const elemente = form.values.elemente;
     const elementeNew = elemente.splice(index, 1);
@@ -69,8 +78,8 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
     form.setFieldValue("total", total);
     setOferta((prevState) => ({
       ...prevState,
-      accesorii: {
-        ...oferta.accesorii,
+      sistem_pluvial: {
+        ...oferta.sistem_pluvial,
         elemente: formList(elemente),
         total: total,
       },
@@ -81,6 +90,12 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
   };
   const changedCantitate = (value, index) => {
     updateField(form.values.elemente[index].nume, value, index);
+  };
+  const changedDimensiune = (value) => {
+    updateFields(value, form.values.culoare);
+  };
+  const changedCuloare = (value) => {
+    updateFields(form.values.dimensiune, value);
   };
   const fields = form.values.elemente.map((item, index) => (
     <Group key={item.key} mt="xs">
@@ -127,6 +142,10 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Box sx={{ maxWidth: 800 }} mx="auto">
+          <Group>
+            <Select label="Dimensiune" data={dimensiuni} onChange={changedDimensiune} value={form.values.dimensiune} error={form.getInputProps("dimensiune").error} />
+            <Select label="Culoare" data={culori} onChange={changedCuloare} value={form.values.culoare} error={form.getInputProps("culoare").error} />
+          </Group>
           {fields.length > 0 ? (
             <Group mb="xs">
               <Text weight={500} size="sm" sx={{ flex: 3 }}>
@@ -185,4 +204,4 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
   );
 }
 
-export default Accesorii;
+export default SistemPluvial;
