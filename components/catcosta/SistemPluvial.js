@@ -32,7 +32,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && cantitate >= 0) {
-      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + nume + "')].pret_lista").evaluate(products);
+      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + nume + "') and (props.dimensiune='" + form.values.dimensiune + "')].pret_lista").evaluate(products);
       form.setListItem("elemente", index, {
         nume: nume,
         cantitate: cantitate,
@@ -67,7 +67,32 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
       }));
     }
   };
-  const updateFields = (dimensiune, culoare) => {};
+  const updateFields = (dimensiune) => {
+    let elemente = [];
+    let pret = 0;
+    let total = 0;
+    form.values.elemente.forEach((item) => {
+      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + item.nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista").evaluate(products);
+      elemente.push({
+        nume: item.nume,
+        cantitate: item.cantitate,
+        pret: pret,
+        total: pret * item.cantitate,
+        key: item.key,
+      });
+      total = total + pret * item.cantitate;
+    });
+    form.setValues({ dimensiune: dimensiune, culoare: form.values.culoare, elemente: elemente, total: total });
+    setOferta((prevState) => ({
+      ...prevState,
+      sistem_pluvial: {
+        dimensiune: dimensiune,
+        culoare: form.values.culoare,
+        elemente: formList(elemente),
+        total: total,
+      },
+    }));
+  };
   const deleteItem = (index) => {
     const elemente = form.values.elemente;
     const elementeNew = elemente.splice(index, 1);
@@ -92,10 +117,18 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     updateField(form.values.elemente[index].nume, value, index);
   };
   const changedDimensiune = (value) => {
-    updateFields(value, form.values.culoare);
+    updateFields(value);
   };
   const changedCuloare = (value) => {
-    updateFields(form.values.dimensiune, value);
+    form.setFieldValue("culoare", value);
+    setOferta((prevState) => ({
+      ...prevState,
+      sistem_pluvial: {
+        ...oferta.sistem_pluvial,
+        dimensiune: form.values.dimensiune,
+        culoare: value,
+      },
+    }));
   };
   const fields = form.values.elemente.map((item, index) => (
     <Group key={item.key} mt="xs">
