@@ -11,7 +11,6 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     grosime: !oferta.tigla.grosime,
     culoare: !oferta.tigla.culoare,
   });
-
   const modele = jsonata("$distinct(*[grup='tabla'].props.model)").evaluate(products);
   const [finisaje, setFinisaje] = useState([]);
   const [grosimi, setGrosimi] = useState([]);
@@ -168,6 +167,7 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     updatePiese();
     nextStep();
   };
+
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
