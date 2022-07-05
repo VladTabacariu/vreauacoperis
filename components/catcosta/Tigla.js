@@ -1,8 +1,9 @@
-import { Select, NumberInput, TextInput, Checkbox, Button, Group, Box } from "@mantine/core";
+import { Select, NumberInput, Container, Stack, Button, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
+import Image from "next/image";
 import jsonata from "jsonata";
-
+const IMAGE_URL = "https://pkzezxjdcmqakrniuzmi.supabase.co/storage/v1/object/public/vreauacoperis.ro/public/bilka/";
 const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   console.log(oferta);
   const [inputsState, setInputsState] = useState({
@@ -170,84 +171,105 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Group>
-          <Select
-            label="Model"
-            description="Selectează un model"
-            placeholder="Selectează"
-            data={modele}
-            onChange={changedModel}
-            value={form.values.model}
-            error={form.getInputProps("model").error}
-          />
-          <Select
-            label="Finisaj"
-            description="Selectează finisajul"
-            placeholder="Selectează"
-            data={finisaje}
-            onChange={changedFinisaj}
-            disabled={inputsState.finisaj}
-            value={form.values.finisaj}
-            error={form.getInputProps("finisaj").error}
-          />
-          <Select
-            label="Grosime"
-            description="Selectează grosimea"
-            placeholder="Selectează"
-            data={grosimi}
-            onChange={changedGrosime}
-            disabled={inputsState.grosime}
-            value={form.values.grosime}
-            error={form.getInputProps("grosime").error}
-          />
-          <Select
-            label="Culoare"
-            description="Selectează culoarea"
-            placeholder="Selectează"
-            data={culori}
-            onChange={changedCuloare}
-            disabled={inputsState.culoare}
-            value={form.values.culoare}
-            error={form.getInputProps("culoare").error}
-          />
+        <Group direction="row">
+          <Group>
+            <Select
+              label="Model"
+              description="Selectează un model"
+              placeholder="Selectează"
+              data={modele}
+              onChange={changedModel}
+              value={form.values.model}
+              error={form.getInputProps("model").error}
+            />
+            <Select
+              label="Finisaj"
+              description="Selectează finisajul"
+              placeholder="Selectează"
+              data={finisaje}
+              onChange={changedFinisaj}
+              disabled={inputsState.finisaj}
+              value={form.values.finisaj}
+              error={form.getInputProps("finisaj").error}
+            />
+            <Select
+              label="Grosime"
+              description="Selectează grosimea"
+              placeholder="Selectează"
+              data={grosimi}
+              onChange={changedGrosime}
+              disabled={inputsState.grosime}
+              value={form.values.grosime}
+              error={form.getInputProps("grosime").error}
+            />
+            <Select
+              label="Culoare"
+              description="Selectează culoarea"
+              placeholder="Selectează"
+              data={culori}
+              onChange={changedCuloare}
+              disabled={inputsState.culoare}
+              value={form.values.culoare}
+              error={form.getInputProps("culoare").error}
+            />
+          </Group>
+          <Stack>
+            <NumberInput
+              styles={{
+                input: { fontSize: 14, fontWeight: "bold" },
+                disabled: { color: "#000000 !important" },
+              }}
+              defaultValue={0}
+              precision={2}
+              label="Pret"
+              description="Preț / metru pătrat cu TVA"
+              placeholder="Preț"
+              disabled
+              value={form.values.pret}
+            />
+            <NumberInput
+              defaultValue={0}
+              precision={2}
+              min={0}
+              label="Suprafata"
+              description="Introdu cantitatea de metri pătrați"
+              placeholder="Introdu cantitatea"
+              onChange={changedSuprafata}
+              value={form.values.suprafata}
+              error={form.getInputProps("suprafata").error}
+            />
+            <NumberInput
+              styles={{
+                input: { fontSize: 14, fontWeight: "bold" },
+                disabled: { color: "#000000 !important" },
+              }}
+              defaultValue={0}
+              precision={2}
+              label="Total"
+              description="Total cu TVA"
+              placeholder="Total"
+              disabled
+              value={form.values.total}
+            />
+          </Stack>
+          <Container>
+            <Image
+              width={200}
+              height={200}
+              src={
+                IMAGE_URL +
+                form.values.model.toLowerCase() +
+                "/" +
+                form.values.model.toLowerCase() +
+                "-" +
+                form.values.finisaj.toLowerCase() +
+                "-" +
+                form.values.culoare +
+                ".jpg"
+              }
+            ></Image>
+          </Container>
         </Group>
-        <NumberInput
-          styles={{
-            input: { fontSize: 14, fontWeight: "bold" },
-            disabled: { color: "#000000 !important" },
-          }}
-          defaultValue={0}
-          precision={2}
-          label="Pret"
-          description="Preț / metru pătrat cu TVA"
-          placeholder="Preț"
-          disabled
-          value={form.values.pret}
-        />
-        <NumberInput
-          defaultValue={0}
-          precision={2}
-          min={0}
-          label="Suprafata"
-          description="Introdu cantitatea de metri pătrați"
-          placeholder="Introdu cantitatea"
-          onChange={changedSuprafata}
-          value={form.values.suprafata}
-          error={form.getInputProps("suprafata").error}
-        />
-        <NumberInput
-          styles={{
-            input: { fontSize: 14, fontWeight: "bold" },
-            disabled: { color: "#000000 !important" },
-          }}
-          defaultValue={0}
-          precision={2}
-          label="Total"
-          description="Total cu TVA"
-          placeholder="Total"
-          disabled
-          value={form.values.total}
-        />
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>
             Înapoi

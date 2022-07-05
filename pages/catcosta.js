@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { Container, Stepper, Button, Group, Text } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import Tigla from "../components/catcosta/Tigla.js";
-import PieseFinisaj from "../components/catcosta/PieseFinisaj";
-import Accesorii from "../components/catcosta/Accesorii";
-import SistemPluvial from "../components/catcosta/SistemPluvial";
+import PieseFinisaj from "../components/catcosta/PieseFinisaj.js";
+import Accesorii from "../components/catcosta/Accesorii.js";
+import SistemPluvial from "../components/catcosta/SistemPluvial.js";
+import FerestreMansarda from "../components/catcosta/FerestreMansarda.js";
+import Total from "../components/catcosta/Total.js";
 import { randomId } from "@mantine/hooks";
 
 const Catcosta = (props) => {
   console.log(props);
   const [active, setActive] = useState(0);
-  const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
+  const nextStep = () => setActive((current) => (current < 5 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
   const [oferta, setOferta] = useState({
@@ -48,18 +50,18 @@ const Catcosta = (props) => {
       culoare: "3005",
       elemente: [
         {
-          nume: "",
-          pret: 0,
-          cantitate: 0,
-          total: 0,
+          nume: "JGHEAB 4M",
+          pret: 2,
+          cantitate: 2,
+          total: 4,
           key: randomId(),
         },
       ],
-      total: 0,
+      total: 4,
     },
     ferestre_mansarda: {
-      elemente: [{ nume: "", dimensiune: "", pret: 0, cantitate: 0, total: 0 }],
-      total: 0,
+      elemente: [{ nume: "FEREASTRA PREMIUM FTP V U5", dimensiune: "55x98", pret: 2, cantitate: 2, total: 4, key: randomId() }],
+      total: 4,
     },
   });
 
@@ -79,10 +81,12 @@ const Catcosta = (props) => {
           <Stepper.Step label="Sistem pluvial" description="Sistem pluvial" allowStepSelect={active > 3}>
             <SistemPluvial oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Step label="Ferestre mansarda" description="Ferestre mansarda" allowStepSelect={active > 3}>
-            Step 3 content: Get full access
+          <Stepper.Step label="Ferestre mansarda" description="Ferestre mansarda" allowStepSelect={active > 4}>
+            <FerestreMansarda oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
+          <Stepper.Completed>
+            <Total oferta={oferta} nextStep={nextStep} prevStep={prevStep} />
+          </Stepper.Completed>
         </Stepper>
       </Container>
     </>
