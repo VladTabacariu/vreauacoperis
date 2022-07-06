@@ -2,9 +2,9 @@ const Links = [
   { link: "/", label: "Acasă" },
   {
     link: "#1",
-    label: "Țiglă metalică",
+    label: "Produse",
     links: [
-      { link: "/docs", label: "Documentation" },
+      { link: "/tiglametalica", label: "Tigla metalica" },
       { link: "/resources", label: "Resources" },
       { link: "/community", label: "Community" },
       { link: "/blog", label: "Blog" },

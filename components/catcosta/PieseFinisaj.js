@@ -1,9 +1,11 @@
-import { Select, NumberInput, Button, Group, Box, Text, createStyles, ActionIcon, Center } from "@mantine/core";
+import { Select, NumberInput, Button, Group, Box, Text, Container, ActionIcon, Center } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useForm, formList } from "@mantine/form";
 import jsonata from "jsonata";
+import Image from "next/image";
 import { Trash } from "tabler-icons-react";
 
+const IMAGE_URL = "https://pkzezxjdcmqakrniuzmi.supabase.co/storage/v1/object/public/vreauacoperis.ro/public/bilka/";
 function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
   const nume_piese = jsonata("$distinct(*[grup='piese_finisaj'].nume)").evaluate(products);
   const form = useForm({
@@ -125,6 +127,23 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
       >
         <Trash size={16} />
       </ActionIcon>
+      <Container sx={{ flex: 1, padding: 0 }}>
+        <Image
+          width={100}
+          height={100}
+          src={
+            IMAGE_URL +
+            item.nume.toLowerCase().replace(" ", "-") +
+            "/" +
+            item.nume.toLowerCase().replace(" ", "-") +
+            "-" +
+            oferta.piese_finisaj.finisaj.toLowerCase() +
+            "-" +
+            oferta.piese_finisaj.culoare +
+            ".jpg"
+          }
+        ></Image>
+      </Container>
     </Group>
   ));
 
@@ -146,6 +165,7 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
                 Cantitate
               </Text>
               <Text size="sm" sx={{ flex: 0.5 }} />
+              <Text size="sm" sx={{ flex: 1 }} />
             </Group>
           ) : (
             <Text color="dimmed" align="center">

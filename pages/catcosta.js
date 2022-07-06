@@ -96,8 +96,7 @@ const Catcosta = (props) => {
 export default Catcosta;
 
 export const getServerSideProps = async () => {
-  const { data: productsData, error: productsError } = await supabase.from("TIGLA").select();
-
+  const { data: productsData, error: productsError } = await supabase.from("PRODUSE").select();
   return {
     props: {
       productsData,

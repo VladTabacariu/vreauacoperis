@@ -3,7 +3,8 @@ import { useForm } from "@mantine/form";
 import { useState } from "react";
 import Image from "next/image";
 import jsonata from "jsonata";
-const IMAGE_URL = "https://pkzezxjdcmqakrniuzmi.supabase.co/storage/v1/object/public/vreauacoperis.ro/public/bilka/";
+
+const IMAGE_URL = "https://pkzezxjdcmqakrniuzmi.supabase.co/storage/v1/object/public/vreauacoperis.ro/public/bilka/tabla/";
 const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   console.log(oferta);
   const [inputsState, setInputsState] = useState({
