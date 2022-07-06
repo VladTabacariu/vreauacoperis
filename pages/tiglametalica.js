@@ -1,4 +1,4 @@
-import { Container, Stepper, Text, Title, Card, Group, createStyles, Chips, Chip } from "@mantine/core";
+import { Container, Stepper, Text, Title, Card, Group, createStyles, Chips, Chip, SegmentedControl } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import jsonata from "jsonata";
 import { randomId } from "@mantine/hooks";
@@ -8,6 +8,10 @@ const IMAGE_URL = "https://pkzezxjdcmqakrniuzmi.supabase.co/storage/v1/object/pu
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    flex: "1 21%",
+    [theme.fn.smallerThan("sm")]: {
+      flex: "1 36%",
+    },
   },
 
   section: {
@@ -37,19 +41,36 @@ function Tiglametalica(props) {
     <>
       <Container>
         <Title>Tigla metalica</Title>
-        <div>test</div>
         <Group>
           {products.map((item) => (
-            <Card sx={{ flex: "1 0 500px" }} key={randomId()} withBorder radius="md" p="md" className={classes.card}>
+            <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
               <Card.Section>
-                <Chips>
-                  {item.props.culori.map((item) => (
-                    <Chip key={randomId()}>{item}</Chip>
-                  ))}
-                </Chips>
+                <Image
+                  width={200}
+                  height={200}
+                  src={
+                    IMAGE_URL +
+                    item.props.model.toLowerCase() +
+                    "/" +
+                    item.props.model.toLowerCase() +
+                    "-" +
+                    item.props.finisaj.toLowerCase() +
+                    "-" +
+                    item.props.culori[0] +
+                    ".jpg"
+                  }
+                  alt={item.nume}
+                />
               </Card.Section>
               <Card.Section className={classes.section} mt="md">
-                <Text>{item.nume}</Text>
+                <Text weight={500} size="xs">
+                  {item.nume}
+                </Text>
+              </Card.Section>
+              <Card.Section className={classes.section} mt="md">
+                <Text color="dimmed" size="xs">
+                  {(item.pret_lista * 5 * 1.19).toFixed(2) + " lei mp"}
+                </Text>
               </Card.Section>
             </Card>
           ))}
