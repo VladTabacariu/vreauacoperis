@@ -1,6 +1,7 @@
-import { Container, Stepper, Text, Title, Card, Group, createStyles, Chips, Chip, SegmentedControl } from "@mantine/core";
+import { Container, Select, Stepper, Text, Title, Card, Group, createStyles, Chips, Chip, SegmentedControl } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import jsonata from "jsonata";
+import { useState } from "react";
 import { randomId } from "@mantine/hooks";
 import Image from "next/image";
 
@@ -34,46 +35,74 @@ const useStyles = createStyles((theme) => ({
 
 function Tiglametalica(props) {
   const { classes } = useStyles();
+
   console.log(props);
   const products = jsonata("*[grup='tabla']").evaluate(props.productsData);
   console.log(products);
+  const [culoriState, setCuloriState] = useState(
+    products.map((item) => {
+      return item.props.culori[0];
+    })
+  );
+  console.log(culoriState);
   return (
     <>
       <Container>
         <Title>Tigla metalica</Title>
         <Group>
-          {products.map((item) => (
-            <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
-              <Card.Section>
-                <Image
-                  width={200}
-                  height={200}
-                  src={
-                    IMAGE_URL +
-                    item.props.model.toLowerCase() +
-                    "/" +
-                    item.props.model.toLowerCase() +
-                    "-" +
-                    item.props.finisaj.toLowerCase() +
-                    "-" +
-                    item.props.culori[0] +
-                    ".jpg"
-                  }
-                  alt={item.nume}
-                />
-              </Card.Section>
-              <Card.Section className={classes.section} mt="md">
-                <Text weight={500} size="xs">
-                  {item.nume}
-                </Text>
-              </Card.Section>
-              <Card.Section className={classes.section} mt="md">
-                <Text color="dimmed" size="xs">
-                  {(item.pret_lista * 5 * 1.19).toFixed(2) + " lei mp"}
-                </Text>
-              </Card.Section>
-            </Card>
-          ))}
+          {products.map((item, index) => {
+            let culoare = culoriState[index];
+            return (
+              <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
+                <Card.Section>
+                  <Image
+                    width={200}
+                    height={200}
+                    src={
+                      IMAGE_URL +
+                      item.props.model.toLowerCase() +
+                      "/" +
+                      item.props.model.toLowerCase() +
+                      "-" +
+                      item.props.finisaj.toLowerCase() +
+                      "-" +
+                      culoare +
+                      ".jpg"
+                    }
+                    alt={item.nume}
+                  />
+                </Card.Section>
+                <Card.Section className={classes.section} mt="md">
+                  <Text weight={500} size="xs">
+                    {item.nume}
+                  </Text>
+                  <Select
+                    label="Culoare"
+                    defaultValue={culoare}
+                    size="xs"
+                    data={item.props.culori}
+                    onChange={(value) => {
+                      setCuloriState((prevState) => {
+                        const newState = prevState.map((item, index2) => {
+                          if (index == index2) {
+                            return value;
+                          } else {
+                            return item;
+                          }
+                        });
+                        return newState;
+                      });
+                    }}
+                  />
+                </Card.Section>
+                <Card.Section className={classes.section} mt="md">
+                  <Text color="dimmed" size="xs">
+                    {(item.pret_lista * 5 * 1.19).toFixed(2) + " lei mp"}
+                  </Text>
+                </Card.Section>
+              </Card>
+            );
+          })}
         </Group>
       </Container>
     </>
