@@ -1,7 +1,6 @@
-import { Container, Select, Stepper, Text, Title, Card, Group, createStyles, Chips, Chip, SegmentedControl } from "@mantine/core";
+import { Container, Text, Title, Card, Group, createStyles } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
 import jsonata from "jsonata";
-import { useState, useCallback } from "react";
 import { randomId } from "@mantine/hooks";
 import Image from "next/image";
 
@@ -35,38 +34,15 @@ const useStyles = createStyles((theme) => ({
 
 function Tiglametalica(props) {
   const { classes } = useStyles();
-
   console.log(props);
-  const products = jsonata("*[grup='tabla']").evaluate(props.productsData);
+  const products = jsonata("*[(grup='tabla') and (categorie='REZIDENTIAL')]").evaluate(props.productsData);
   console.log(products);
-  const [culoriState, setCuloriState] = useState(
-    products.map((item) => {
-      return item.props.culori[0];
-    })
-  );
-  products.forEach((item) => {
-    item.props.culoare = item.props.culori[0];
-  });
-  const [items, setItems] = useState(products);
-
-  const cardChange = useCallback((value, index) => {
-    setItems((prevState) =>
-      prevState.map((item, index2) => {
-        console.log(value);
-        const newItem = { ...item, props: { ...item.props, culoare: value } };
-        console.log(newItem.props.culoare);
-        console.log(newItem, index, index2);
-        return index == index2 ? newItem : item;
-      })
-    );
-  }, []);
-
   return (
     <>
       <Container>
         <Title>Tigla metalica</Title>
         <Group>
-          {items.map((item, index) => (
+          {products.map((item) => (
             <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
               <Card.Section>
                 <Image
@@ -80,7 +56,7 @@ function Tiglametalica(props) {
                     "-" +
                     item.props.finisaj.toLowerCase() +
                     "-" +
-                    item.props.culoare +
+                    item.props.culori[Math.floor(Math.random() * (item.props.culori.length - 1))] +
                     ".jpg"
                   }
                   alt={item.nume}
@@ -90,13 +66,6 @@ function Tiglametalica(props) {
                 <Text weight={500} size="xs">
                   {item.nume}
                 </Text>
-                <Select
-                  label="Culoare"
-                  defaultValue={item.props.culoare}
-                  size="xs"
-                  data={item.props.culori}
-                  onChange={(value) => cardChange(value, index)}
-                />
               </Card.Section>
               <Card.Section className={classes.section} mt="md">
                 <Text color="dimmed" size="xs">
