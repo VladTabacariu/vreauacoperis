@@ -35,12 +35,12 @@ const useStyles = createStyles((theme) => ({
 function Tiglametalica(props) {
   const { classes } = useStyles();
   console.log(props);
-  const products = jsonata("*[(grup='tabla') and (categorie='REZIDENTIAL')]").evaluate(props.productsData);
+  const products = jsonata("*[(grup='tabla') and (categorie='INDUSTRIAL')]").evaluate(props.productsData);
   console.log(products);
   return (
     <>
       <Container>
-        <Title>Tigla metalica</Title>
+        <Title>Tabla cutata</Title>
         <Group>
           {products.map((item) => (
             <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
@@ -68,7 +68,7 @@ function Tiglametalica(props) {
                 </Text>
               </Card.Section>
               <Card.Section className={classes.section} mt="md">
-                <Text color="dimmed" size="xs">
+                <Text weight={700} size="xs">
                   {(item.pret_lista * 5 * 1.19).toFixed(2) + " lei mp"}
                 </Text>
               </Card.Section>

@@ -5,7 +5,7 @@ const Links = [
     label: "Produse",
     links: [
       { link: "/tiglametalica", label: "Tigla metalica" },
-      { link: "/resources", label: "Resources" },
+      { link: "/tablacutata", label: "Tabla cutata" },
       { link: "/community", label: "Community" },
       { link: "/blog", label: "Blog" },
     ],
