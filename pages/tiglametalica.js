@@ -4,7 +4,7 @@ import jsonata from "jsonata";
 import { randomId } from "@mantine/hooks";
 import Image from "next/image";
 
-const IMAGE_URL = "/assets/bilka/tabla/";
+const IMAGE_URL = "/assets/bilka/tabla/imagini/";
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
@@ -68,7 +68,7 @@ function Tiglametalica(props) {
                 </Text>
               </Card.Section>
               <Card.Section className={classes.section} mt="md">
-                <Text color="dimmed" size="xs">
+                <Text weight={700} size="xs">
                   {(item.pret_lista * 5 * 1.19).toFixed(2) + " lei mp"}
                 </Text>
               </Card.Section>

@@ -5,7 +5,7 @@ import jsonata from "jsonata";
 import Image from "next/image";
 import { Trash } from "tabler-icons-react";
 
-const IMAGE_URL = "https://pkzezxjdcmqakrniuzmi.supabase.co/storage/v1/object/public/vreauacoperis.ro/public/bilka/";
+const IMAGE_URL = "/assets/bilka/piese_finisaj/";
 function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
   const nume_piese = jsonata("$distinct(*[grup='piese_finisaj'].nume)").evaluate(products);
   const form = useForm({
@@ -133,9 +133,11 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
           height={100}
           src={
             IMAGE_URL +
-            item.nume.toLowerCase().replace(" ", "-") +
+            oferta.piese_finisaj.finisaj.toLowerCase() +
             "/" +
-            item.nume.toLowerCase().replace(" ", "-") +
+            oferta.piese_finisaj.culoare.toLowerCase() +
+            "/" +
+            item.nume.toLowerCase().replaceAll(" ", "-") +
             "-" +
             oferta.piese_finisaj.finisaj.toLowerCase() +
             "-" +

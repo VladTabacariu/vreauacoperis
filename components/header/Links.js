@@ -6,12 +6,12 @@ const Links = [
     links: [
       { link: "/tiglametalica", label: "Tigla metalica" },
       { link: "/tablacutata", label: "Tabla cutata" },
-      { link: "/community", label: "Community" },
-      { link: "/blog", label: "Blog" },
+      { link: "/piesefinisaj", label: "Piese de finisaj" },
+      { link: "/accesorii", label: "Accesorii tigla metalica" },
+      { link: "/sistempluvial", label: "Sistem pluvial" },
     ],
   },
   { link: "/about", label: "About" },
-  { link: "/pricing", label: "Pricing" },
   {
     link: "#2",
     label: "Contact",

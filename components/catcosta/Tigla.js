@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import jsonata from "jsonata";
 
-const IMAGE_URL = "/assets/bilka/tabla/";
+const IMAGE_URL = "/assets/bilka/tabla/color_range/";
 const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   console.log(oferta);
   const [inputsState, setInputsState] = useState({

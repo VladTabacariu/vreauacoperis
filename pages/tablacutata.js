@@ -4,7 +4,7 @@ import jsonata from "jsonata";
 import { randomId } from "@mantine/hooks";
 import Image from "next/image";
 
-const IMAGE_URL = "/assets/bilka/tabla/";
+const IMAGE_URL = "/assets/bilka/tabla/imagini/";
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
@@ -46,7 +46,7 @@ function Tiglametalica(props) {
             <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
               <Card.Section>
                 <Image
-                  width={200}
+                  width={250}
                   height={200}
                   src={
                     IMAGE_URL +
