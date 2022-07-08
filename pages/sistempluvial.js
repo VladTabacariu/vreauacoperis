@@ -52,7 +52,13 @@ function Sistempluvial(props) {
                     width={200}
                     height={200}
                     src={
-                      IMAGE_URL + item.nume.toLowerCase().replaceAll(" ", "-") + "/" + item.nume.toLowerCase().replaceAll(" ", "-") + "-" + item.props.culori[rand] + ".jpg"
+                      IMAGE_URL +
+                      item.nume.toLowerCase().replaceAll(" ", "-") +
+                      "/" +
+                      item.nume.toLowerCase().replaceAll(" ", "-") +
+                      "-" +
+                      item.props.culori[rand] +
+                      ".jpg"
                     }
                     alt={item.nume}
                   />
