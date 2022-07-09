@@ -1,6 +1,5 @@
 import { Container, Text, Title, Card, Group, createStyles } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
-import jsonata from "jsonata";
 import { randomId } from "@mantine/hooks";
 import Image from "next/image";
 
@@ -35,14 +34,14 @@ const useStyles = createStyles((theme) => ({
 function Tiglametalica(props) {
   const { classes } = useStyles();
   console.log(props);
-  const products = jsonata("*[(grup='tabla') and (categorie='REZIDENTIAL')]").evaluate(props.productsData);
+  const products = props.productsData;
   console.log(products);
   return (
     <>
       <Container>
         <Title>Tigla metalica</Title>
         <Group>
-          {products.map((item) => (
+          {products?.map((item) => (
             <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
               <Card.Section>
                 <Image
@@ -85,7 +84,9 @@ export default Tiglametalica;
 export const getStaticProps = async () => {
   const { data: productsData, error: productsError } = await supabase
     .from("PRODUSE")
-    .select("grup, nume, producator, categorie, pret_lista, props, id");
+    .select("grup, nume, producator, categorie, pret_lista, props, id")
+    .eq("grup", "tabla")
+    .or("categorie.eq.REZIDENTIAL,categorie.eq.RETROPANEL");
   return {
     props: {
       productsData,
