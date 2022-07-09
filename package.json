@@ -13,10 +13,12 @@
     "@mantine/form": "^4.2.9",
     "@mantine/hooks": "^4.2.11",
     "@mantine/next": "^4.0.7",
+    "@mantine/notifications": "^4.2.12",
     "@supabase/supabase-js": "^1.31.1",
     "jsonata": "^1.8.6",
     "keen-slider": "^6.6.4",
     "next": "12.1.0",
+    "nodemailer": "^6.7.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "tabler-icons-react": "^1.39.0"

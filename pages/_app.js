@@ -3,6 +3,7 @@ import Layout from "../components/layout/Layout.js";
 import HeaderAction from "../components/header/HeaderAction.js";
 import Footer from "../components/footer/Footer.js";
 import { MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import "../styles/globals.css";
 
 export default function App(props) {
@@ -24,11 +25,13 @@ export default function App(props) {
           colors: {},
         }}
       >
-        <HeaderAction />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <Footer />
+        <NotificationsProvider>
+          <HeaderAction />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <Footer />
+        </NotificationsProvider>
       </MantineProvider>
     </>
   );
