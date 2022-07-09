@@ -41,7 +41,7 @@ function Tiglametalica(props) {
       <Container>
         <Title>Tabla cutata</Title>
         <Group>
-          {products.map((item) => (
+          {products?.map((item) => (
             <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
               <Card.Section>
                 <Image

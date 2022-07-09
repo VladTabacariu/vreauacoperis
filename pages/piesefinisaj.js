@@ -41,7 +41,7 @@ function Piesefinisaj(props) {
       <Container>
         <Title>Piese de finisaj</Title>
         <Group>
-          {products.map((item) => {
+          {products?.map((item) => {
             const rand = 0;
             return (
               <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>

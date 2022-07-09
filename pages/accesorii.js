@@ -42,7 +42,7 @@ function Accesorii(props) {
       <Container>
         <Title>Accesorii tigla metalica</Title>
         <Group>
-          {products.map((item) => {
+          {products?.map((item) => {
             const rand = 0;
             return (
               <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
