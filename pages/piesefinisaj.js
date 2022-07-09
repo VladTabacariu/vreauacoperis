@@ -55,7 +55,7 @@ function Piesefinisaj(props) {
                       "/" +
                       item.props.culori[rand] +
                       "/" +
-                      item.nume.toLowerCase().split(" ").join("") +
+                      item.nume.toLowerCase().split(" ").join("-") +
                       "-" +
                       item.props.finisaj.toLowerCase() +
                       "-" +

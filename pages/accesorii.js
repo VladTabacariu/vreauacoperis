@@ -35,7 +35,7 @@ const useStyles = createStyles((theme) => ({
 function Accesorii(props) {
   const { classes } = useStyles();
   console.log(props);
-  const products = jsonata("*[(grup='accesorii') and (categorie='REZIDENTIAL')]").evaluate(props.productsData);
+  const products = props.productsData;
   console.log(products);
   return (
     <>
@@ -47,7 +47,12 @@ function Accesorii(props) {
             return (
               <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
                 <Card.Section>
-                  <Image width={200} height={200} src={IMAGE_URL + item.nume.toLowerCase().replaceAll(" ", "-") + ".jpg"} alt={item.nume} />
+                  <Image
+                    width={200}
+                    height={200}
+                    src={IMAGE_URL + item.nume.toLowerCase().split(" ").join("-") + +".jpg"}
+                    alt={item.nume}
+                  />
                 </Card.Section>
                 <Card.Section className={classes.section} mt="md">
                   <Text weight={500} size="xs">
@@ -70,10 +75,12 @@ function Accesorii(props) {
 
 export default Accesorii;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: productsData, error: productsError } = await supabase
     .from("PRODUSE")
-    .select("grup, nume, producator, categorie, pret_lista, props, id");
+    .select("grup, nume, producator, categorie, pret_lista, props, id")
+    .eq("grup", "piese_finisaj")
+    .eq("categorie", "REZIDENTIAL");
   return {
     props: {
       productsData,

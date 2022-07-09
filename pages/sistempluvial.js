@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
 function Sistempluvial(props) {
   const { classes } = useStyles();
   console.log(props);
-  const products = jsonata("*[(grup='sistem_pluvial') and (categorie='sistem_pluvial')]").evaluate(props.productsData);
+  const products = props.productsData;
   console.log(products);
   return (
     <>
@@ -53,10 +53,10 @@ function Sistempluvial(props) {
                     height={200}
                     src={
                       IMAGE_URL +
-                      item.nume.toLowerCase().replaceAll(" ", "-") +
-                      "/" +
-                      item.nume.toLowerCase().replaceAll(" ", "-") +
-                      "-" +
+                      item.nume.toLowerCase().split(" ").join("-") +
+                      +"/" +
+                      item.nume.toLowerCase().split(" ").join("-") +
+                      +"-" +
                       item.props.culori[rand] +
                       ".jpg"
                     }
@@ -84,10 +84,12 @@ function Sistempluvial(props) {
 
 export default Sistempluvial;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: productsData, error: productsError } = await supabase
     .from("PRODUSE")
-    .select("grup, nume, producator, categorie, pret_lista, props, id");
+    .select("grup, nume, producator, categorie, pret_lista, props, id")
+    .eq("grup", "sistem_pluvial")
+    .eq("categorie", "sistem_pluvial");
   return {
     props: {
       productsData,
