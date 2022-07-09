@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Hero from "../components/hero/Hero.js";
 import FeaturesGrid from "../components/features/FeaturesGrid.js";
 import styles from "../styles/Home.module.css";
