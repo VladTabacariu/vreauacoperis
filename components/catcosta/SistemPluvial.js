@@ -8,8 +8,6 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
   const nume_produse = jsonata("$distinct(*[grup='sistem_pluvial'].nume)[]").evaluate(products);
   const dimensiuni = jsonata("$distinct(*[grup='sistem_pluvial'].props.dimensiune)[]").evaluate(products);
   const culori = jsonata("$distinct(*[grup='sistem_pluvial'].props.culori)[]").evaluate(products);
-  console.log(dimensiuni);
-  console.log(nume_produse);
   const form = useForm({
     initialValues: {
       dimensiune: oferta.sistem_pluvial.dimensiune,
@@ -27,7 +25,6 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     },
   });
   const updateField = (nume, cantitate, index) => {
-    console.log(nume, cantitate, index);
     const pret = 0;
     const total = 0;
     const elemente = [];
@@ -166,9 +163,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
       </ActionIcon>
     </Group>
   ));
-  console.log(form.values);
   const handleSubmit = (values) => {
-    console.log(values);
     nextStep();
   };
   return (

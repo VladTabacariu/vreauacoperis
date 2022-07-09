@@ -6,7 +6,6 @@ import jsonata from "jsonata";
 
 const IMAGE_URL = "/assets/bilka/tabla/color_range/";
 const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
-  console.log(oferta);
   const [inputsState, setInputsState] = useState({
     finisaj: !oferta.tigla.finisaj,
     grosime: !oferta.tigla.grosime,
@@ -45,7 +44,7 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
       finisaj: values.finisaj == "" ? "Alege finisajul" : null,
       grosime: values.grosime == "" ? "Alege grosimea" : null,
       culoare: values.culoare == "" ? "Alege culoarea" : null,
-      suprafata: values.finisaj == "" ? "Introdu suprafata" : null,
+      suprafata: values.suprafata <= 0 ? "Introdu suprafata" : null,
     }),
   });
   const updateFiels = (model, finisaj, grosime, culoare, suprafata) => {
@@ -170,7 +169,6 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     }));
   };
   const handleSubmit = (values) => {
-    console.log(values);
     updatePiese();
     nextStep();
   };

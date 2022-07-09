@@ -22,28 +22,28 @@ const Catcosta = (props) => {
       finisaj: "MAT",
       grosime: "0.50",
       culoare: "3005",
-      suprafata: 200,
-      pret: 1,
-      total: 200,
+      suprafata: 0,
+      pret: 0,
+      total: 0,
     },
     piese_finisaj: {
       finisaj: "MAT",
       grosime: "0.50",
       culoare: "3005",
       total: 0,
-      piese: [{ nume: "COAMA MICA", cantitate: 1, pret: 7, total: 7, key: randomId() }],
+      piese: [{ nume: "COAMA MICA", cantitate: 0, pret: 0, total: 0, key: randomId() }],
     },
     accesorii: {
       elemente: [
         {
           nume: "FOLIE ANTICONDENS 95GR",
-          pret: 2,
-          cantitate: 1,
-          total: 2,
+          pret: 0,
+          cantitate: 0,
+          total: 0,
           key: randomId(),
         },
       ],
-      total: 2,
+      total: 0,
     },
     sistem_pluvial: {
       dimensiune: "SISTEM MIC",
@@ -51,17 +51,17 @@ const Catcosta = (props) => {
       elemente: [
         {
           nume: "JGHEAB 4M",
-          pret: 2,
-          cantitate: 2,
-          total: 4,
+          pret: 0,
+          cantitate: 0,
+          total: 0,
           key: randomId(),
         },
       ],
-      total: 4,
+      total: 0,
     },
     ferestre_mansarda: {
-      elemente: [{ nume: "FEREASTRA PREMIUM FTP V U5", dimensiune: "55x98", pret: 2, cantitate: 2, total: 4, key: randomId() }],
-      total: 4,
+      elemente: [{ nume: "FEREASTRA PREMIUM FTP V U5", dimensiune: "55x98", pret: 0, cantitate: 0, total: 0, key: randomId() }],
+      total: 0,
     },
   });
 
@@ -96,7 +96,7 @@ const Catcosta = (props) => {
 export default Catcosta;
 
 export const getServerSideProps = async () => {
-  const { data: productsData, error: productsError } = await supabase.from("PRODUSE").select();
+  const { data: productsData, error: productsError } = await supabase.from("PRODUSE").select("grup, nume, producator, categorie, pret_lista, props, id");
   return {
     props: {
       productsData,

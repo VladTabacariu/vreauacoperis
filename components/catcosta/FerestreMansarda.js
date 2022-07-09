@@ -7,7 +7,6 @@ import { Trash } from "tabler-icons-react";
 
 function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
   const nume_elemente = jsonata("$distinct(*[grup='ferestre_mansarda'].nume)").evaluate(products);
-  console.log(nume_elemente);
   //const [dimensiuni, setDimensiuni] = useState([]);
   const form = useForm({
     initialValues: {
@@ -75,13 +74,11 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
     );
   });
   const updateField = (nume, dimensiune, cantitate, index) => {
-    console.log(nume, dimensiune, cantitate, index);
     const pret = 0;
     const total = 0;
     const elemente = [];
     if (nume && dimensiune && cantitate >= 0) {
       pret = jsonata("*[(grup='ferestre_mansarda') and (nume='" + nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista").evaluate(products);
-      console.log(pret);
       form.setListItem("elemente", index, {
         nume: nume,
         dimensiune: dimensiune,
@@ -155,10 +152,8 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
     updateField(form.values.elemente[index].nume, form.values.elemente[index].dimensiune, value, index);
   };
   const handleSubmit = (values) => {
-    console.log(values);
     nextStep();
   };
-  console.log(form.values);
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>

@@ -25,7 +25,6 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const piese = [];
     if (nume && cantitate >= 0) {
-      console.log(nume, cantitate, index, form.values.piese);
       pret = jsonata(
         "*[(grup='piese_finisaj') and (nume='" +
           nume +
@@ -150,10 +149,8 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
   ));
 
   const handleSubmit = (values) => {
-    console.log(values);
     nextStep();
   };
-  console.log(form.values);
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>

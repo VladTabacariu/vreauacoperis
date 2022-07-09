@@ -19,7 +19,6 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
     },
   });
   const updateField = (nume, cantitate, index) => {
-    console.log(nume, cantitate, index);
     const pret = 0;
     const total = 0;
     const elemente = [];
@@ -118,9 +117,7 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
       </ActionIcon>
     </Group>
   ));
-  console.log(form.values);
   const handleSubmit = (values) => {
-    console.log(values);
     nextStep();
   };
   return (

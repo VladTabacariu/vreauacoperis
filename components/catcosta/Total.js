@@ -53,106 +53,122 @@ function Total({ oferta, nextStep, prevStep }) {
               </td>
             </tr>
           </tbody>
-          <thead>
-            <th colSpan={4}>
-              <Text weight={500} align="left">
-                Piese de finisaj
-              </Text>
-            </th>
-          </thead>
-          <tbody>
-            {oferta.piese_finisaj.piese.map((item) => (
-              <tr key={item.key}>
-                <td>
-                  <Text>{item.nume}</Text>
-                </td>
-                <td>
-                  <Text>{item.cantitate + " buc"}</Text>
-                </td>
-                <td>
-                  <Text>{item.pret}</Text>
-                </td>
-                <td>
-                  <Text>{item.total}</Text>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <thead>
-            <th colSpan={4}>
-              <Text weight={500} align="left">
-                Accesorii
-              </Text>
-            </th>
-          </thead>
-          <tbody>
-            {oferta.accesorii.elemente.map((item) => (
-              <tr key={item.key}>
-                <td>
-                  <Text>{item.nume}</Text>
-                </td>
-                <td>
-                  <Text>{item.cantitate + " buc"}</Text>
-                </td>
-                <td>
-                  <Text>{item.pret}</Text>
-                </td>
-                <td>
-                  <Text>{item.total}</Text>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <thead>
-            <th colSpan={4}>
-              <Text weight={500} align="left">
-                {"Sistem pluvial - " + oferta.sistem_pluvial.dimensiune + " " + oferta.sistem_pluvial.culoare}
-              </Text>
-            </th>
-          </thead>
-          <tbody>
-            {oferta.sistem_pluvial.elemente.map((item) => (
-              <tr key={item.key}>
-                <td>
-                  <Text>{item.nume}</Text>
-                </td>
-                <td>
-                  <Text>{item.cantitate + " buc"}</Text>
-                </td>
-                <td>
-                  <Text>{item.pret}</Text>
-                </td>
-                <td>
-                  <Text>{item.total}</Text>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <thead>
-            <th colSpan={4}>
-              <Text weight={500} align="left">
-                Ferestre mansarda
-              </Text>
-            </th>
-          </thead>
-          <tbody>
-            {oferta.ferestre_mansarda.elemente.map((item) => (
-              <tr key={item.key}>
-                <td>
-                  <Text>{item.nume + " " + item.dimensiune}</Text>
-                </td>
-                <td>
-                  <Text>{item.cantitate + " buc"}</Text>
-                </td>
-                <td>
-                  <Text>{item.pret}</Text>
-                </td>
-                <td>
-                  <Text>{item.total}</Text>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          {oferta.piese_finisaj.total > 0 && (
+            <>
+              <thead>
+                <th colSpan={4}>
+                  <Text weight={500} align="left">
+                    Piese de finisaj
+                  </Text>
+                </th>
+              </thead>
+              <tbody>
+                {oferta.piese_finisaj.piese.map((item) => (
+                  <tr key={item.key}>
+                    <td>
+                      <Text>{item.nume}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.cantitate + " buc"}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.pret}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.total}</Text>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          )}
+          {oferta.accesorii.total > 0 && (
+            <>
+              <thead>
+                <th colSpan={4}>
+                  <Text weight={500} align="left">
+                    Accesorii
+                  </Text>
+                </th>
+              </thead>
+              <tbody>
+                {oferta.accesorii.elemente.map((item) => (
+                  <tr key={item.key}>
+                    <td>
+                      <Text>{item.nume}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.cantitate + " buc"}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.pret}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.total}</Text>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          )}
+          {oferta.sistem_pluvial.total > 0 && (
+            <>
+              <thead>
+                <th colSpan={4}>
+                  <Text weight={500} align="left">
+                    {"Sistem pluvial - " + oferta.sistem_pluvial.dimensiune + " " + oferta.sistem_pluvial.culoare}
+                  </Text>
+                </th>
+              </thead>
+              <tbody>
+                {oferta.sistem_pluvial.elemente.map((item) => (
+                  <tr key={item.key}>
+                    <td>
+                      <Text>{item.nume}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.cantitate + " buc"}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.pret}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.total}</Text>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          )}
+          {oferta.ferestre_mansarda.total > 0 && (
+            <>
+              <thead>
+                <th colSpan={4}>
+                  <Text weight={500} align="left">
+                    Ferestre mansarda
+                  </Text>
+                </th>
+              </thead>
+              <tbody>
+                {oferta.ferestre_mansarda.elemente.map((item) => (
+                  <tr key={item.key}>
+                    <td>
+                      <Text>{item.nume + " " + item.dimensiune}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.cantitate + " buc"}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.pret}</Text>
+                    </td>
+                    <td>
+                      <Text>{item.total}</Text>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          )}
           <thead>
             <th colSpan={4}>
               <Text weight={500}>TOTAL GENERAL</Text>
