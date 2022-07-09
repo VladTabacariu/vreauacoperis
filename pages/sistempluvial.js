@@ -84,7 +84,7 @@ function Sistempluvial(props) {
 
 export default Sistempluvial;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const { data: productsData, error: productsError } = await supabase
     .from("PRODUSE")
     .select("grup, nume, producator, categorie, pret_lista, props, id");

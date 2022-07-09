@@ -70,7 +70,7 @@ function Accesorii(props) {
 
 export default Accesorii;
 
-export async function getStaticProps(context) {
+export const getServerSideProps = async () => {
   const { data: productsData, error: productsError } = await supabase
     .from("PRODUSE")
     .select("grup, nume, producator, categorie, pret_lista, props, id");
@@ -80,4 +80,4 @@ export async function getStaticProps(context) {
       productsError,
     },
   };
-}
+};
