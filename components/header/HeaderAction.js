@@ -2,7 +2,7 @@ import Links from "./Links.js";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/logo/VreauAcoperis-LogoOrizontal.png";
-import { Settings, Search, Photo, MessageCircle, Trash, ArrowsLeftRight, ChevronDown } from "tabler-icons-react";
+import { ChevronDown } from "tabler-icons-react";
 import { createStyles, Menu, Center, Header, Container, Group, Button, Burger, Drawer } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 
