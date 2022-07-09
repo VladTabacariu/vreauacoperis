@@ -1,4 +1,4 @@
-import { Select, NumberInput, Container, Stack, Button, Group } from "@mantine/core";
+import { Select, NumberInput, Container, Stack, Button, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 import Image from "next/image";
@@ -20,7 +20,11 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     setFinisaje(jsonata("$distinct(*[grup='tabla'].props[model='" + oferta.tigla.model + "'][].finisaj)").evaluate(products));
   }
   if (oferta.tigla.finisaj && grosimi.length == 0) {
-    setGrosimi(jsonata("$distinct(*[grup='tabla'].props[(model='" + oferta.tigla.model + "') and (finisaj='" + oferta.tigla.finisaj + "')][].grosime)").evaluate(products));
+    setGrosimi(
+      jsonata(
+        "$distinct(*[grup='tabla'].props[(model='" + oferta.tigla.model + "') and (finisaj='" + oferta.tigla.finisaj + "')][].grosime)"
+      ).evaluate(products)
+    );
   }
   if (oferta.tigla.grosime && culori.length == 0) {
     setCulori(
@@ -54,11 +58,21 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     const pret = 0;
     const total = 0;
     finisaje = jsonata("$distinct(*[grup='tabla'].props[model='" + model + "'][].finisaj)").evaluate(products);
-    grosimi = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "')][].grosime)").evaluate(products);
-    culori = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "') and (grosime='" + grosime + "')][].culori)").evaluate(products);
-    pret = jsonata("*[(grup='tabla') and (props.model='" + model + "') and (props.finisaj='" + finisaj + "') and (props.grosime='" + grosime + "')].pret_lista").evaluate(
+    grosimi = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "')][].grosime)").evaluate(
       products
     );
+    culori = jsonata(
+      "$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "') and (grosime='" + grosime + "')][].culori)"
+    ).evaluate(products);
+    pret = jsonata(
+      "*[(grup='tabla') and (props.model='" +
+        model +
+        "') and (props.finisaj='" +
+        finisaj +
+        "') and (props.grosime='" +
+        grosime +
+        "')].pret_lista"
+    ).evaluate(products);
     total = suprafata * pret;
     if (finisaje) {
       if (!finisaje.includes(finisaj)) {
@@ -176,105 +190,108 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   return (
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Group direction="row">
-          <Group>
-            <Select
-              label="Model"
-              description="Selectează un model"
-              placeholder="Selectează"
-              data={modele}
-              onChange={changedModel}
-              value={form.values.model}
-              error={form.getInputProps("model").error}
-            />
-            <Select
-              label="Finisaj"
-              description="Selectează finisajul"
-              placeholder="Selectează"
-              data={finisaje}
-              onChange={changedFinisaj}
-              disabled={inputsState.finisaj}
-              value={form.values.finisaj}
-              error={form.getInputProps("finisaj").error}
-            />
-            <Select
-              label="Grosime"
-              description="Selectează grosimea"
-              placeholder="Selectează"
-              data={grosimi}
-              onChange={changedGrosime}
-              disabled={inputsState.grosime}
-              value={form.values.grosime}
-              error={form.getInputProps("grosime").error}
-            />
-            <Select
-              label="Culoare"
-              description="Selectează culoarea"
-              placeholder="Selectează"
-              data={culori}
-              onChange={changedCuloare}
-              disabled={inputsState.culoare}
-              value={form.values.culoare}
-              error={form.getInputProps("culoare").error}
-            />
+        <Box sx={{ maxWidth: 800 }} mx="auto">
+          <Group direction="row">
+            <Group>
+              <Select
+                label="Model"
+                description="Selectează un model"
+                placeholder="Selectează"
+                data={modele}
+                onChange={changedModel}
+                value={form.values.model}
+                error={form.getInputProps("model").error}
+              />
+              <Select
+                label="Finisaj"
+                description="Selectează finisajul"
+                placeholder="Selectează"
+                data={finisaje}
+                onChange={changedFinisaj}
+                disabled={inputsState.finisaj}
+                value={form.values.finisaj}
+                error={form.getInputProps("finisaj").error}
+              />
+              <Select
+                label="Grosime"
+                description="Selectează grosimea"
+                placeholder="Selectează"
+                data={grosimi}
+                onChange={changedGrosime}
+                disabled={inputsState.grosime}
+                value={form.values.grosime}
+                error={form.getInputProps("grosime").error}
+              />
+              <Select
+                label="Culoare"
+                description="Selectează culoarea"
+                placeholder="Selectează"
+                data={culori}
+                onChange={changedCuloare}
+                disabled={inputsState.culoare}
+                value={form.values.culoare}
+                error={form.getInputProps("culoare").error}
+              />
+            </Group>
+            <Stack>
+              <NumberInput
+                styles={{
+                  input: { fontSize: 14, fontWeight: "bold" },
+                  disabled: { color: "#000000 !important" },
+                }}
+                defaultValue={0}
+                precision={2}
+                label="Pret"
+                description="Preț / metru pătrat cu TVA"
+                placeholder="Preț"
+                disabled
+                value={form.values.pret}
+              />
+              <NumberInput
+                defaultValue={0}
+                precision={2}
+                min={0}
+                label="Suprafata"
+                description="Introdu cantitatea de metri pătrați"
+                placeholder="Introdu cantitatea"
+                onChange={changedSuprafata}
+                value={form.values.suprafata}
+                error={form.getInputProps("suprafata").error}
+              />
+              <NumberInput
+                styles={{
+                  input: { fontSize: 14, fontWeight: "bold" },
+                  disabled: { color: "#000000 !important" },
+                }}
+                defaultValue={0}
+                precision={2}
+                label="Total"
+                description="Total cu TVA"
+                placeholder="Total"
+                disabled
+                value={form.values.total}
+              />
+            </Stack>
+            <Container>
+              <Image
+                width={200}
+                height={200}
+                alt={form.values.model}
+                src={
+                  IMAGE_URL +
+                  form.values.model.toLowerCase() +
+                  "/" +
+                  form.values.model.toLowerCase() +
+                  "-" +
+                  form.values.finisaj.toLowerCase() +
+                  "-" +
+                  form.values.culoare +
+                  ".jpg"
+                }
+              ></Image>
+            </Container>
           </Group>
-          <Stack>
-            <NumberInput
-              styles={{
-                input: { fontSize: 14, fontWeight: "bold" },
-                disabled: { color: "#000000 !important" },
-              }}
-              defaultValue={0}
-              precision={2}
-              label="Pret"
-              description="Preț / metru pătrat cu TVA"
-              placeholder="Preț"
-              disabled
-              value={form.values.pret}
-            />
-            <NumberInput
-              defaultValue={0}
-              precision={2}
-              min={0}
-              label="Suprafata"
-              description="Introdu cantitatea de metri pătrați"
-              placeholder="Introdu cantitatea"
-              onChange={changedSuprafata}
-              value={form.values.suprafata}
-              error={form.getInputProps("suprafata").error}
-            />
-            <NumberInput
-              styles={{
-                input: { fontSize: 14, fontWeight: "bold" },
-                disabled: { color: "#000000 !important" },
-              }}
-              defaultValue={0}
-              precision={2}
-              label="Total"
-              description="Total cu TVA"
-              placeholder="Total"
-              disabled
-              value={form.values.total}
-            />
-          </Stack>
-          <Container>
-            <Image
-              width={200}
-              height={200}
-              src={
-                IMAGE_URL +
-                form.values.model.toLowerCase() +
-                "/" +
-                form.values.model.toLowerCase() +
-                "-" +
-                form.values.finisaj.toLowerCase() +
-                "-" +
-                form.values.culoare +
-                ".jpg"
-              }
-            ></Image>
-          </Container>
-        </Group>
+        </Box>
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>
             Înapoi
