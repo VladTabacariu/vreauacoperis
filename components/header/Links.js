@@ -11,16 +11,8 @@ const Links = [
       { link: "/sistempluvial", label: "Sistem pluvial" },
     ],
   },
-  { link: "/about", label: "About" },
-  {
-    link: "#2",
-    label: "Contact",
-    links: [
-      { link: "/contact", label: "Contact" },
-      { link: "/demo", label: "Book a demo" },
-      { link: "/forums", label: "Forums" },
-    ],
-  },
+  { link: "/despre", label: "Despre" },
+  { link: "/contact", label: "Contact" },
 ];
 
 export default Links;

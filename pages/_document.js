@@ -8,7 +8,18 @@ export default class _Document extends Document {
   render() {
     return (
       <Html lang="ro">
-        <Head />
+        <Head>
+          <style>
+            {`
+            body {
+              min-height: 100vh;
+            }
+            #__next { display: flex;
+              flex-direction: column;
+              min-height: 100vh; }
+          `}
+          </style>
+        </Head>
         <body>
           <Main />
           <NextScript />

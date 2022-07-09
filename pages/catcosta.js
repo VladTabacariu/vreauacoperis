@@ -72,16 +72,16 @@ const Catcosta = (props) => {
           <Stepper.Step label="Tigla" description="Alege tigla metalica" allowStepSelect={active > 0}>
             <Tigla oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Step label="Piese de finisaj" description="Piese de finisaj tigla metalica" allowStepSelect={active > 1}>
+          <Stepper.Step label="Piese finisaj" description="tigla metalica" allowStepSelect={active > 1}>
             <PieseFinisaj oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Step label="Accesorii" description="Accesorii auxiliare" allowStepSelect={active > 2}>
+          <Stepper.Step label="Accesorii" description="auxiliare" allowStepSelect={active > 2}>
             <Accesorii oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Step label="Sistem pluvial" description="Sistem pluvial" allowStepSelect={active > 3}>
+          <Stepper.Step label="Sistem" description="pluvial" allowStepSelect={active > 3}>
             <SistemPluvial oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
-          <Stepper.Step label="Ferestre mansarda" description="Ferestre mansarda" allowStepSelect={active > 4}>
+          <Stepper.Step label="Ferestre" description="mansarda" allowStepSelect={active > 4}>
             <FerestreMansarda oferta={oferta} setOferta={setOferta} products={props.productsData} nextStep={nextStep} prevStep={prevStep} />
           </Stepper.Step>
           <Stepper.Completed>

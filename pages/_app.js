@@ -1,5 +1,7 @@
 import Head from "next/head";
+import Layout from "../components/layout/Layout.js";
 import HeaderAction from "../components/header/HeaderAction.js";
+import Footer from "../components/footer/Footer.js";
 import { MantineProvider } from "@mantine/core";
 import "../styles/globals.css";
 
@@ -23,7 +25,10 @@ export default function App(props) {
         }}
       >
         <HeaderAction />
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+        <Footer />
       </MantineProvider>
     </>
   );
