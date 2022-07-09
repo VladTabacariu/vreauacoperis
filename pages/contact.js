@@ -98,11 +98,11 @@ function Contact() {
   const [mailState, setMailState] = useState(false);
   const form = useForm({
     initialValues: {
-      nume: "vlad",
-      email: "vlad.tabacariu@airoofs.ro",
-      telefon: "0759012190",
-      subiect: "Test",
-      mesaj: "123",
+      nume: "",
+      email: "",
+      telefon: "",
+      subiect: "",
+      mesaj: "",
     },
     validate: {
       nume: (value) => (value == "" ? "Introdu numele tau" : null),
