@@ -9,7 +9,7 @@ export const FeaturesData = [
   {
     icon: Truck,
     title: "Transport gratuit",
-    description: "Pentru comenzile cu valoare mai mare dde 7.500 de lei nu se percepe taxă de transport!",
+    description: "Pentru comenzile cu valoare mai mare de 7.500 de lei nu se percepe taxă de transport!",
   },
   {
     icon: Users,

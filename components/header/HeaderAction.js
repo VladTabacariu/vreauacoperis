@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/logo/VreauAcoperis-LogoOrizontal.png";
 import { ChevronDown } from "tabler-icons-react";
-import { createStyles, Menu, Center, Header, Container, Group, Button, Burger, Drawer } from "@mantine/core";
+import { createStyles, Stack, Menu, Center, Header, Container, Group, Button, Burger, Drawer } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
+import ContactBanner from "../contactbanner/ContactBanner.js";
 
-const HEADER_HEIGHT = 92;
+const HEADER_HEIGHT = 110;
 const useStyles = createStyles((theme) => ({
   inner: {
     height: HEADER_HEIGHT,
@@ -108,8 +109,11 @@ const HeaderAction = () => {
             </Container>
           </Center>
         </Group>
-        <Group spacing={5} className={classes.links}>
-          {items}
+        <Group direction="column" spacing={5} className={classes.links}>
+          <Container fluid sx={{ width: "100%" }} px="lg">
+            <ContactBanner />
+          </Container>
+          <Group>{items}</Group>
         </Group>
         <Link href="/catcosta" passHref>
           <Button variant="outline" radius="xl" sx={{ height: 30 }}>
