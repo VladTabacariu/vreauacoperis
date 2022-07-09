@@ -12,7 +12,7 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: carouselData, error: carouselError } = await supabase.from("CAROUSEL").select();
 
   return {
