@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper, Text, TextInput, Box, Textarea, Button, Group, SimpleGrid, createStyles } from "@mantine/core";
-import { ContactIconsList } from "../components/contacticons/ContactIcons.js";
+import { ContactIconsList } from "../components/contacticonss/ContactIcons.js";
 
 const useStyles = createStyles((theme) => {
   const BREAKPOINT = theme.fn.smallerThan("sm");
