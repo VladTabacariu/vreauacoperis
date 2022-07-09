@@ -111,7 +111,7 @@ const HeaderAction = () => {
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
-        <Link href="/catcosta">
+        <Link href="/catcosta" passHref>
           <Button variant="outline" radius="xl" sx={{ height: 30 }}>
             <a>Cât costă?</a>
           </Button>
