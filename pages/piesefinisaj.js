@@ -88,7 +88,9 @@ function Piesefinisaj(props) {
 export default Piesefinisaj;
 
 export const getStaticProps = async () => {
-  const { data: productsData, error: productsError } = await supabase.from("PRODUSE").select();
+  const { data: productsData, error: productsError } = await supabase
+    .from("PRODUSE")
+    .select("grup, nume, producator, categorie, pret_lista, props, id");
   return {
     props: {
       productsData,
