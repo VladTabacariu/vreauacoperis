@@ -1,6 +1,5 @@
 import { Container, Text, Title, Card, Group, createStyles } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
-import jsonata from "jsonata";
 import { randomId } from "@mantine/hooks";
 import Image from "next/image";
 
@@ -35,7 +34,7 @@ const useStyles = createStyles((theme) => ({
 function Piesefinisaj(props) {
   const { classes } = useStyles();
   console.log(props);
-  const products = jsonata("*[(grup='piese_finisaj') and (categorie='REZIDENTIAL')]").evaluate(props.productsData);
+  const products = props.productsData;
   console.log(products);
   return (
     <>
@@ -87,10 +86,12 @@ function Piesefinisaj(props) {
 
 export default Piesefinisaj;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: productsData, error: productsError } = await supabase
     .from("PRODUSE")
-    .select("grup, nume, producator, categorie, pret_lista, props, id");
+    .select("grup, nume, producator, categorie, pret_lista, props, id")
+    .eq("grup", "piese_finisaj")
+    .eq("categorie", "REZIDENTIAL");
   return {
     props: {
       productsData,
