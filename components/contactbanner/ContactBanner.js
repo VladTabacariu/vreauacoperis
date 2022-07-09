@@ -5,17 +5,16 @@ import { Mail, Phone } from "tabler-icons-react";
 function ContactBanner() {
   return (
     <Group position="right">
-      <ThemeIcon size="sm">
+      <ThemeIcon size="sm" radius="lg">
         <Mail size={14} />
       </ThemeIcon>
-
-      <Text size="xs" weight={500}>
+      <Text size="sm" weight={500} variant="link" component="a" href="mailto:office@vreauacoperis.ro">
         office@vreauacoperis.ro
       </Text>
-      <ThemeIcon size="sm">
+      <ThemeIcon size="sm" radius="lg">
         <Phone size={14} />
       </ThemeIcon>
-      <Text size="xs" weight={500}>
+      <Text size="sm" weight={500} variant="link" component="a" href="tel:0742015698">
         0742015698
       </Text>
     </Group>

@@ -1,9 +1,9 @@
-import { Select, NumberInput, Button, Group, Box, Text, Container, ActionIcon, Center } from "@mantine/core";
+import { Select, NumberInput, Button, Group, Box, Text, Container, ThemeIcon, ActionIcon, Center } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useForm, formList } from "@mantine/form";
 import jsonata from "jsonata";
 import Image from "next/image";
-import { Trash } from "tabler-icons-react";
+import { Trash, AlertCircle } from "tabler-icons-react";
 
 const IMAGE_URL = "/assets/bilka/piese_finisaj/";
 function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
@@ -156,6 +156,14 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Box sx={{ maxWidth: 800 }} mx="auto">
+          <Group position="center" py="sm">
+            <ThemeIcon size="sm" radius="lg" color="gray">
+              <AlertCircle />
+            </ThemeIcon>
+            <Text color="dimmed" size="sm">
+              Piesele de finisaj pentru tigla metalica au lungimea standard de 2 metri!
+            </Text>
+          </Group>
           {fields.length > 0 ? (
             <Group mb="xs">
               <Text weight={500} size="sm" sx={{ flex: 3 }}>
