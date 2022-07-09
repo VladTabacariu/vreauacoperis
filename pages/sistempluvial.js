@@ -54,9 +54,9 @@ function Sistempluvial(props) {
                     src={
                       IMAGE_URL +
                       item.nume.toLowerCase().split(" ").join("-") +
-                      +"/" +
+                      "/" +
                       item.nume.toLowerCase().split(" ").join("-") +
-                      +"-" +
+                      "-" +
                       item.props.culori[rand] +
                       ".jpg"
                     }
