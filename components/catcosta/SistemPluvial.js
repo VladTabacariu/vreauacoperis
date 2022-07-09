@@ -1,9 +1,11 @@
-import { Select, NumberInput, Button, Group, Box, Text, createStyles, ActionIcon, Center } from "@mantine/core";
+import { Select, Container, NumberInput, Button, Group, Box, Text, createStyles, ActionIcon, Center } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useForm, formList } from "@mantine/form";
 import jsonata from "jsonata";
 import { Trash } from "tabler-icons-react";
+import Image from "next/image";
 
+const IMAGE_URL = "/assets/bilka/sistem_pluvial/";
 function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
   const nume_produse = jsonata("$distinct(*[grup='sistem_pluvial'].nume)[]").evaluate(products);
   const dimensiuni = jsonata("$distinct(*[grup='sistem_pluvial'].props.dimensiune)[]").evaluate(products);
@@ -29,7 +31,9 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && cantitate >= 0) {
-      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + nume + "') and (props.dimensiune='" + form.values.dimensiune + "')].pret_lista").evaluate(products);
+      pret = jsonata(
+        "*[(grup='sistem_pluvial') and (nume='" + nume + "') and (props.dimensiune='" + form.values.dimensiune + "')].pret_lista"
+      ).evaluate(products);
       form.setListItem("elemente", index, {
         nume: nume,
         cantitate: cantitate,
@@ -69,7 +73,9 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     let pret = 0;
     let total = 0;
     form.values.elemente.forEach((item) => {
-      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + item.nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista").evaluate(products);
+      pret = jsonata(
+        "*[(grup='sistem_pluvial') and (nume='" + item.nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista"
+      ).evaluate(products);
       elemente.push({
         nume: item.nume,
         cantitate: item.cantitate,
@@ -161,6 +167,22 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
       >
         <Trash size={16} />
       </ActionIcon>
+      <Container sx={{ flex: 1, padding: 0 }}>
+        <Image
+          width={45}
+          height={45}
+          alt={item.nume}
+          src={
+            IMAGE_URL +
+            item.nume.toLowerCase().replaceAll(" ", "-") +
+            "/" +
+            item.nume.toLowerCase().replaceAll(" ", "-") +
+            "-" +
+            oferta.sistem_pluvial.culoare +
+            ".jpg"
+          }
+        ></Image>
+      </Container>
     </Group>
   ));
   const handleSubmit = (values) => {
@@ -171,8 +193,20 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Box sx={{ maxWidth: 800 }} mx="auto">
           <Group>
-            <Select label="Dimensiune" data={dimensiuni} onChange={changedDimensiune} value={form.values.dimensiune} error={form.getInputProps("dimensiune").error} />
-            <Select label="Culoare" data={culori} onChange={changedCuloare} value={form.values.culoare} error={form.getInputProps("culoare").error} />
+            <Select
+              label="Dimensiune"
+              data={dimensiuni}
+              onChange={changedDimensiune}
+              value={form.values.dimensiune}
+              error={form.getInputProps("dimensiune").error}
+            />
+            <Select
+              label="Culoare"
+              data={culori}
+              onChange={changedCuloare}
+              value={form.values.culoare}
+              error={form.getInputProps("culoare").error}
+            />
           </Group>
           {fields.length > 0 ? (
             <Group mb="xs">
@@ -183,6 +217,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
                 Cantitate
               </Text>
               <Text size="sm" sx={{ flex: 0.5 }} />
+              <Text size="sm" sx={{ flex: 1 }} />
             </Group>
           ) : (
             <Text color="dimmed" align="center">

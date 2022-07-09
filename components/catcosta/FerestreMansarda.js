@@ -44,7 +44,7 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
           onChange={(event) => {
             changedDimensiune(event, index);
           }}
-          sx={{ flex: 1 }}
+          sx={{ flex: 2 }}
           value={item.dimensiune}
           error={form.getListInputProps("elemente", index, "dimensiune").error}
         />
@@ -78,7 +78,9 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && dimensiune && cantitate >= 0) {
-      pret = jsonata("*[(grup='ferestre_mansarda') and (nume='" + nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista").evaluate(products);
+      pret = jsonata(
+        "*[(grup='ferestre_mansarda') and (nume='" + nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista"
+      ).evaluate(products);
       form.setListItem("elemente", index, {
         nume: nume,
         dimensiune: dimensiune,
@@ -163,7 +165,7 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
               <Text weight={500} size="sm" sx={{ flex: 3 }}>
                 Nume
               </Text>
-              <Text weight={500} size="sm" sx={{ flex: 1 }}>
+              <Text weight={500} size="sm" sx={{ flex: 2 }}>
                 Dimensiune
               </Text>
               <Text weight={500} size="sm" sx={{ flex: 1 }}>

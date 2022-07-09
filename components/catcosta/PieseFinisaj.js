@@ -128,8 +128,9 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
       </ActionIcon>
       <Container sx={{ flex: 1, padding: 0 }}>
         <Image
-          width={100}
-          height={100}
+          width={45}
+          height={45}
+          alt={item.nume}
           src={
             IMAGE_URL +
             oferta.piese_finisaj.finisaj.toLowerCase() +

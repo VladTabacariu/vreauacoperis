@@ -1,9 +1,11 @@
-import { Select, NumberInput, Button, Group, Box, Text, createStyles, ActionIcon, Center } from "@mantine/core";
+import { Select, Container, NumberInput, Button, Group, Box, Text, createStyles, ActionIcon, Center } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useForm, formList } from "@mantine/form";
 import jsonata from "jsonata";
 import { Trash } from "tabler-icons-react";
+import Image from "next/image";
 
+const IMAGE_URL = "/assets/bilka/accesorii/";
 function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
   const nume_produse = jsonata("$distinct(*[grup='accesorii'].nume)[]").evaluate(products);
   const form = useForm({
@@ -115,6 +117,9 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
       >
         <Trash size={16} />
       </ActionIcon>
+      <Container sx={{ flex: 1, padding: 0 }}>
+        <Image width={45} height={45} alt={item.nume} src={IMAGE_URL + item.nume.toLowerCase().replaceAll(" ", "-") + ".jpg"}></Image>
+      </Container>
     </Group>
   ));
   const handleSubmit = (values) => {
@@ -133,6 +138,7 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
                 Cantitate
               </Text>
               <Text size="sm" sx={{ flex: 0.5 }} />
+              <Text size="sm" sx={{ flex: 1 }} />
             </Group>
           ) : (
             <Text color="dimmed" align="center">
