@@ -14,8 +14,8 @@ function ContactBanner() {
       <ThemeIcon size="sm" radius="lg">
         <Phone size={14} />
       </ThemeIcon>
-      <Text size="sm" weight={500} variant="link" component="a" href="tel:0742015698">
-        0742015698
+      <Text size="sm" weight={500} variant="link" component="a" href="tel:0787629175">
+        0787629175
       </Text>
     </Group>
   );

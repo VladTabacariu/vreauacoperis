@@ -14,10 +14,7 @@ const useStyles = createStyles((theme, { variant }) => ({
 
   icon: {
     marginRight: theme.spacing.md,
-    backgroundImage:
-      variant === "gradient"
-        ? `linear-gradient(135deg, ${theme.colors[theme.primaryColor][4]} 0%, ${theme.colors[theme.primaryColor][6]} 100%)`
-        : "none",
+    backgroundImage: variant === "gradient" ? `linear-gradient(135deg, ${theme.colors[theme.primaryColor][4]} 0%, ${theme.colors[theme.primaryColor][6]} 100%)` : "none",
     backgroundColor: "transparent",
   },
 
@@ -56,7 +53,7 @@ function ContactIcon({ icon: Icon, title, description, variant = "gradient", cla
 
 const MOCKDATA = [
   { title: "Email", description: "office@vreauacoperis.ro", icon: At },
-  { title: "Numar telefon", description: "0742015698", icon: Phone },
+  { title: "Numar telefon", description: "0787629175", icon: Phone },
   { title: "Adresa", description: "Piatra Neamt, Bulevardul Traian", icon: MapPin },
   { title: "Program zilnic", description: "08:00 - 17:00", icon: Sun },
 ];
@@ -83,9 +80,7 @@ export function ContactIcons() {
         sx={(theme) => ({
           padding: theme.spacing.xl,
           borderRadius: theme.radius.md,
-          backgroundImage: `linear-gradient(135deg, ${theme.colors[theme.primaryColor][6]} 0%, ${
-            theme.colors[theme.primaryColor][4]
-          } 100%)`,
+          backgroundImage: `linear-gradient(135deg, ${theme.colors[theme.primaryColor][6]} 0%, ${theme.colors[theme.primaryColor][4]} 100%)`,
         })}
       >
         <ContactIconsList variant="white" />
