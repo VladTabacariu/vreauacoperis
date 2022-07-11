@@ -27,7 +27,7 @@ function Social() {
 
           <div id="fb-customer-chat" className="fb-customerchat"></div>
           <Fragment>
-            <Script id="fb-messenger" strategy="afterInteractive">
+            <Script id="fb-messenger">
               {`
       var chatbox = document.getElementById('fb-customer-chat');
       chatbox.setAttribute("page_id", "110227004505017");
