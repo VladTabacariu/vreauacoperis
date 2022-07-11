@@ -53,7 +53,7 @@ function ContactIcon({ icon: Icon, title, description, variant = "gradient", cla
 
 const MOCKDATA = [
   { title: "Email", description: "office@vreauacoperis.ro", icon: At },
-  { title: "Numar telefon", description: "0787629175", icon: Phone },
+  { title: "Numar telefon", description: "0745054808", icon: Phone },
   { title: "Adresa", description: "Piatra Neamt, Bulevardul Traian", icon: MapPin },
   { title: "Program zilnic", description: "08:00 - 17:00", icon: Sun },
 ];
