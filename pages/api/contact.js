@@ -4,8 +4,8 @@ export default function handler(req, res) {
     port: 465,
     host: "smtp.gmail.com",
     auth: {
-      user: "office.vreauacoperis.ro@gmail.com",
-      pass: "iirnziauovzpfdqb",
+      user: process.env.GOOGLE_USER_EMAIL,
+      pass: process.env.GOOGLE.USER_PASSWORD,
     },
     secure: true,
   });
