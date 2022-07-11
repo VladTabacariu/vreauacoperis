@@ -1,10 +1,10 @@
 import { BrandWhatsapp } from "tabler-icons-react";
 import { Fragment } from "react";
-import { createStyles, ThemeIcon, Anchor } from "@mantine/core";
+import { createStyles, ThemeIcon, Anchor, Group } from "@mantine/core";
 import Script from "next/script";
 
 const useStyles = createStyles((theme) => ({
-  whatsapp: {
+  social: {
     position: "fixed",
     right: "40px",
     bottom: "40px",
@@ -16,18 +16,19 @@ function Social() {
   const { classes } = useStyles();
   return (
     <>
-      <Anchor className={classes.whatsapp} href="https://web.whatsapp.com/send?phone=40745054808" target="_blank">
-        <ThemeIcon color="green" radius="xl" size={56}>
-          <BrandWhatsapp />
-        </ThemeIcon>
-      </Anchor>
-      <div>
-        <div id="fb-root"></div>
+      <Group className={classes.social}>
+        <Anchor href="https://web.whatsapp.com/send?phone=40745054808" target="_blank">
+          <ThemeIcon color="green" radius="xl" size={56}>
+            <BrandWhatsapp />
+          </ThemeIcon>
+        </Anchor>
+        <div>
+          <div id="fb-root"></div>
 
-        <div id="fb-customer-chat" className="fb-customerchat"></div>
-        <Fragment>
-          <Script id="fb-messenger" strategy="afterInteractive">
-            {`
+          <div id="fb-customer-chat" className="fb-customerchat"></div>
+          <Fragment>
+            <Script id="fb-messenger" strategy="afterInteractive">
+              {`
       var chatbox = document.getElementById('fb-customer-chat');
       chatbox.setAttribute("page_id", "110227004505017");
       chatbox.setAttribute("attribution", "biz_inbox");
@@ -46,9 +47,10 @@ function Social() {
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
       `}
-          </Script>
-        </Fragment>
-      </div>
+            </Script>
+          </Fragment>
+        </div>
+      </Group>
     </>
   );
 }
