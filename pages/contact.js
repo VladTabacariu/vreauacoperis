@@ -145,6 +145,7 @@ function Contact() {
           autoClose: 2000,
         });
       } else {
+        setMailState(false);
         updateNotification({
           id: "load-data",
           color: "red",
