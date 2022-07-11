@@ -17,7 +17,7 @@ function Social() {
   return (
     <>
       <Group className={classes.social}>
-        <Anchor href="https://web.whatsapp.com/send?phone=40745054808" target="_blank">
+        <Anchor href="https://wa.me/40745054808" target="_blank">
           <ThemeIcon color="green" radius="xl" size={56}>
             <BrandWhatsapp />
           </ThemeIcon>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@mantine/core";
 import Script from "next/script";
+import Social from "../contact/Social.js";
 
 function Layout({ children }) {
   return (
@@ -18,6 +19,7 @@ function Layout({ children }) {
         </Script>
       </React.Fragment>
       {children}
+      <Social />
     </Container>
   );
 }
