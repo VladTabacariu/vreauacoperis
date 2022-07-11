@@ -1,6 +1,7 @@
 import Hero from "../components/hero/Hero.js";
 import FeaturesGrid from "../components/features/FeaturesGrid.js";
 import ContactForm from "../components/contact/ContactForm.js";
+import Social from "../components/contact/Social.js";
 import styles from "../styles/Home.module.css";
 import { supabase } from "../utils/supabaseClient";
 
@@ -12,6 +13,7 @@ export default function Home(props) {
         <FeaturesGrid title="Serviciile noastre vă vor scuti de timp și bani!" description="" />
         <ContactForm title="Daca ai nevoie de ajutor nu ezita sa ne contactezi!" />
       </div>
+      <Social />
     </>
   );
 }

@@ -87,11 +87,10 @@ const Hero = () => {
     <div className={classes.hero}>
       <Overlay gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 80%)" opacity={1} zIndex={0} />
       <Container className={classes.container}>
-        <Title className={classes.title}>Cât ne costă acoperișul,</Title>
+        <Title className={classes.title}>Cât ne costă acoperișul</Title>
         <Title className={classes.title}>din țiglă metalică?</Title>
         <Text className={classes.description} size="xl" mt="xl">
-          Atunci când începem să construim casa noastră apare întrebarea &quot;Cât ne costă acoperișul?&quot; Apasă butonul de mai jos si urmărește
-          toți pașii!
+          Atunci când începem să construim casa noastră apare întrebarea &quot;Cât ne costă acoperișul?&quot; Ca să aflii apasă butonul de mai jos si urmărește toți pașii!
         </Text>
         <Link href="/catcosta">
           <a>

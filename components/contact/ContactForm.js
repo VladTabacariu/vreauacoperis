@@ -159,14 +159,14 @@ function ContactForm({ title }) {
   console.log(form.values);
   return (
     <form className={classes.form} onSubmit={form.onSubmit(handleSubmit)}>
-      <Text size="lg" weight={700} className={classes.title}>
+      <Text size="xl" weight={700} className={classes.title}>
         {title}
       </Text>
 
       <div className={classes.fields}>
         <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
-          <TextInput label="Numele tau" placeholder="Numele tau" {...form.getInputProps("nume")} />
-          <TextInput label="Emailul tau" placeholder="exemplu@email.ro" {...form.getInputProps("email")} />
+          <TextInput label="Nume" placeholder="Numele tau" {...form.getInputProps("nume")} />
+          <TextInput label="Email" placeholder="exemplu@email.ro" {...form.getInputProps("email")} />
           <TextInput label="Telefon" placeholder="0798765432" {...form.getInputProps("telefon")} />
         </SimpleGrid>
         <TextInput mt="md" label="Subiect" placeholder="Subiect" {...form.getInputProps("subiect")} />
