@@ -31,9 +31,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && cantitate >= 0) {
-      pret = jsonata(
-        "*[(grup='sistem_pluvial') and (nume='" + nume + "') and (props.dimensiune='" + form.values.dimensiune + "')].pret_lista"
-      ).evaluate(products);
+      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + nume + "') and (props.dimensiune='" + form.values.dimensiune + "')].pret_lista").evaluate(products) * 5 * 1.19;
       form.setListItem("elemente", index, {
         nume: nume,
         cantitate: cantitate,
@@ -73,9 +71,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
     let pret = 0;
     let total = 0;
     form.values.elemente.forEach((item) => {
-      pret = jsonata(
-        "*[(grup='sistem_pluvial') and (nume='" + item.nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista"
-      ).evaluate(products);
+      pret = jsonata("*[(grup='sistem_pluvial') and (nume='" + item.nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista").evaluate(products) * 5 * 1.19;
       elemente.push({
         nume: item.nume,
         cantitate: item.cantitate,
@@ -172,15 +168,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
           width={45}
           height={45}
           alt={item.nume}
-          src={
-            IMAGE_URL +
-            item.nume.toLowerCase().replaceAll(" ", "-") +
-            "/" +
-            item.nume.toLowerCase().replaceAll(" ", "-") +
-            "-" +
-            oferta.sistem_pluvial.culoare +
-            ".jpg"
-          }
+          src={IMAGE_URL + item.nume.toLowerCase().replaceAll(" ", "-") + "/" + item.nume.toLowerCase().replaceAll(" ", "-") + "-" + oferta.sistem_pluvial.culoare + ".jpg"}
         ></Image>
       </Container>
     </Group>
@@ -193,20 +181,8 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Box sx={{ maxWidth: 800 }} mx="auto">
           <Group>
-            <Select
-              label="Dimensiune"
-              data={dimensiuni}
-              onChange={changedDimensiune}
-              value={form.values.dimensiune}
-              error={form.getInputProps("dimensiune").error}
-            />
-            <Select
-              label="Culoare"
-              data={culori}
-              onChange={changedCuloare}
-              value={form.values.culoare}
-              error={form.getInputProps("culoare").error}
-            />
+            <Select label="Dimensiune" data={dimensiuni} onChange={changedDimensiune} value={form.values.dimensiune} error={form.getInputProps("dimensiune").error} />
+            <Select label="Culoare" data={culori} onChange={changedCuloare} value={form.values.culoare} error={form.getInputProps("culoare").error} />
           </Group>
           {fields.length > 0 ? (
             <Group mb="xs">

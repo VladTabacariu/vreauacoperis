@@ -21,7 +21,7 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
       },
     },
   });
-  const fields = form.values.elemente.map((item, index) => {
+  const fields = form.values.elemente?.map((item, index) => {
     const dimensiuni = [];
     if (item.nume) {
       dimensiuni = jsonata("*[(grup='ferestre_mansarda') and (nume='" + item.nume + "')].props.dimensiune").evaluate(products);
@@ -78,9 +78,7 @@ function FerestreMansarda({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && dimensiune && cantitate >= 0) {
-      pret = jsonata(
-        "*[(grup='ferestre_mansarda') and (nume='" + nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista"
-      ).evaluate(products);
+      pret = jsonata("*[(grup='ferestre_mansarda') and (nume='" + nume + "') and (props.dimensiune='" + dimensiune + "')].pret_lista").evaluate(products) * 5 * 1.19;
       form.setListItem("elemente", index, {
         nume: nume,
         dimensiune: dimensiune,

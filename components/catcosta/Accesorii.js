@@ -25,7 +25,7 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const elemente = [];
     if (nume && cantitate >= 0) {
-      pret = jsonata("*[(grup='accesorii') and (nume='" + nume + "')].pret_lista").evaluate(products);
+      pret = jsonata("*[(grup='accesorii') and (nume='" + nume + "')].pret_lista").evaluate(products) * 5 * 1.19;
       form.setListItem("elemente", index, {
         nume: nume,
         cantitate: cantitate,

@@ -56,9 +56,12 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     finisaje = jsonata("$distinct(*[grup='tabla'].props[model='" + model + "'][].finisaj)").evaluate(products);
     grosimi = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "')][].grosime)").evaluate(products);
     culori = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "') and (grosime='" + grosime + "')][].culori)").evaluate(products);
-    pret = jsonata("*[(grup='tabla') and (props.model='" + model + "') and (props.finisaj='" + finisaj + "') and (props.grosime='" + grosime + "')].pret_lista").evaluate(
-      products
-    );
+    pret =
+      jsonata("*[(grup='tabla') and (props.model='" + model + "') and (props.finisaj='" + finisaj + "') and (props.grosime='" + grosime + "')].pret_lista").evaluate(
+        products
+      ) *
+      5 *
+      1.19;
     total = suprafata * pret;
     if (finisaje) {
       if (!finisaje.includes(finisaj)) {
@@ -145,15 +148,18 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     let pret = 0;
     let total = 0;
     piese.forEach((item) => {
-      pret = jsonata(
-        "*[(grup='piese_finisaj') and (props.model='" +
-          item.nume +
-          "') and (props.finisaj='" +
-          oferta.piese_finisaj.finisaj +
-          "') and(props.grosime='" +
-          oferta.piese_finisaj.grosime +
-          "')].pret_lista"
-      ).evaluate(products);
+      pret =
+        jsonata(
+          "*[(grup='piese_finisaj') and (props.model='" +
+            item.nume +
+            "') and (props.finisaj='" +
+            oferta.piese_finisaj.finisaj +
+            "') and(props.grosime='" +
+            oferta.piese_finisaj.grosime +
+            "')].pret_lista"
+        ).evaluate(products) *
+        5 *
+        1.19;
       pieseNew.push({
         nume: item.nume,
         cantitate: item.cantitate,

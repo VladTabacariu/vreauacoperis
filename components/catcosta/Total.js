@@ -31,11 +31,13 @@ function Total({ oferta, nextStep, prevStep }) {
             </tr>
           </thead>
           <thead>
-            <th colSpan={4}>
-              <Text weight={500} align="left">
-                Tigla metalica
-              </Text>
-            </th>
+            <tr colSpan={4}>
+              <th>
+                <Text weight={700} align="left">
+                  Tigla metalica
+                </Text>
+              </th>
+            </tr>
           </thead>
           <tbody>
             <tr key={randomId()}>
@@ -46,21 +48,23 @@ function Total({ oferta, nextStep, prevStep }) {
                 <Text>{oferta.tigla.suprafata + " mp"}</Text>
               </td>
               <td>
-                <Text>{oferta.tigla.pret}</Text>
+                <Text>{oferta.tigla.pret.toFixed(2)}</Text>
               </td>
               <td>
-                <Text>{oferta.tigla.total}</Text>
+                <Text>{oferta.tigla.total.toFixed(2)}</Text>
               </td>
             </tr>
           </tbody>
           {oferta.piese_finisaj.total > 0 && (
             <>
               <thead>
-                <th colSpan={4}>
-                  <Text weight={500} align="left">
-                    Piese de finisaj
-                  </Text>
-                </th>
+                <tr>
+                  <th colSpan={4}>
+                    <Text weight={700} align="left">
+                      Piese de finisaj
+                    </Text>
+                  </th>
+                </tr>
               </thead>
               <tbody>
                 {oferta.piese_finisaj.piese.map((item) => (
@@ -72,10 +76,10 @@ function Total({ oferta, nextStep, prevStep }) {
                       <Text>{item.cantitate + " buc"}</Text>
                     </td>
                     <td>
-                      <Text>{item.pret}</Text>
+                      <Text>{item.pret.toFixed(2)}</Text>
                     </td>
                     <td>
-                      <Text>{item.total}</Text>
+                      <Text>{item.total.toFixed(2)}</Text>
                     </td>
                   </tr>
                 ))}
@@ -85,11 +89,13 @@ function Total({ oferta, nextStep, prevStep }) {
           {oferta.accesorii.total > 0 && (
             <>
               <thead>
-                <th colSpan={4}>
-                  <Text weight={500} align="left">
-                    Accesorii
-                  </Text>
-                </th>
+                <tr>
+                  <th colSpan={4}>
+                    <Text weight={700} align="left">
+                      Accesorii
+                    </Text>
+                  </th>
+                </tr>
               </thead>
               <tbody>
                 {oferta.accesorii.elemente.map((item) => (
@@ -101,10 +107,10 @@ function Total({ oferta, nextStep, prevStep }) {
                       <Text>{item.cantitate + " buc"}</Text>
                     </td>
                     <td>
-                      <Text>{item.pret}</Text>
+                      <Text>{item.pret.toFixed(2)}</Text>
                     </td>
                     <td>
-                      <Text>{item.total}</Text>
+                      <Text>{item.total.toFixed(2)}</Text>
                     </td>
                   </tr>
                 ))}
@@ -114,11 +120,13 @@ function Total({ oferta, nextStep, prevStep }) {
           {oferta.sistem_pluvial.total > 0 && (
             <>
               <thead>
-                <th colSpan={4}>
-                  <Text weight={500} align="left">
-                    {"Sistem pluvial - " + oferta.sistem_pluvial.dimensiune + " " + oferta.sistem_pluvial.culoare}
-                  </Text>
-                </th>
+                <tr>
+                  <th colSpan={4}>
+                    <Text weight={700} align="left">
+                      {"Sistem pluvial - " + oferta.sistem_pluvial.dimensiune + " " + oferta.sistem_pluvial.culoare}
+                    </Text>
+                  </th>
+                </tr>
               </thead>
               <tbody>
                 {oferta.sistem_pluvial.elemente.map((item) => (
@@ -130,10 +138,10 @@ function Total({ oferta, nextStep, prevStep }) {
                       <Text>{item.cantitate + " buc"}</Text>
                     </td>
                     <td>
-                      <Text>{item.pret}</Text>
+                      <Text>{item.pret.toFixed(2)}</Text>
                     </td>
                     <td>
-                      <Text>{item.total}</Text>
+                      <Text>{item.total.toFixed(2)}</Text>
                     </td>
                   </tr>
                 ))}
@@ -143,11 +151,13 @@ function Total({ oferta, nextStep, prevStep }) {
           {oferta.ferestre_mansarda.total > 0 && (
             <>
               <thead>
-                <th colSpan={4}>
-                  <Text weight={500} align="left">
-                    Ferestre mansarda
-                  </Text>
-                </th>
+                <tr>
+                  <th colSpan={4}>
+                    <Text weight={700} align="left">
+                      Ferestre mansarda
+                    </Text>
+                  </th>
+                </tr>
               </thead>
               <tbody>
                 {oferta.ferestre_mansarda.elemente.map((item) => (
@@ -159,10 +169,10 @@ function Total({ oferta, nextStep, prevStep }) {
                       <Text>{item.cantitate + " buc"}</Text>
                     </td>
                     <td>
-                      <Text>{item.pret}</Text>
+                      <Text>{item.pret.toFixed(2)}</Text>
                     </td>
                     <td>
-                      <Text>{item.total}</Text>
+                      <Text>{item.total.toFixed(2)}</Text>
                     </td>
                   </tr>
                 ))}
@@ -170,15 +180,17 @@ function Total({ oferta, nextStep, prevStep }) {
             </>
           )}
           <thead>
-            <th colSpan={4}>
-              <Text weight={500}>TOTAL GENERAL</Text>
-            </th>
+            <tr>
+              <th colSpan={4}>
+                <Text weight={700}>TOTAL GENERAL</Text>
+              </th>
+            </tr>
           </thead>
           <tbody>
             <tr key={randomId()}>
               <td colSpan={4}>
                 <Text align="center">
-                  {oferta.tigla.total + oferta.piese_finisaj.total + oferta.accesorii.total + oferta.sistem_pluvial.total + oferta.ferestre_mansarda.total}
+                  {(oferta.tigla.total + oferta.piese_finisaj.total + oferta.accesorii.total + oferta.sistem_pluvial.total + oferta.ferestre_mansarda.total).toFixed(2)}
                 </Text>
               </td>
             </tr>
