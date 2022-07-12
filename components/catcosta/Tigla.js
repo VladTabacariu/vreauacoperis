@@ -5,6 +5,8 @@ import Image from "next/image";
 import jsonata from "jsonata";
 
 const IMAGE_URL = "/assets/bilka/tabla/color_range/";
+const PLACEHOLDER = "/assets/placeholder.png";
+
 const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
   const [inputsState, setInputsState] = useState({
     finisaj: !oferta.tigla.finisaj,
@@ -270,15 +272,17 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
                 height={200}
                 alt={form.values.model}
                 src={
-                  IMAGE_URL +
-                  form.values.model.toLowerCase() +
-                  "/" +
-                  form.values.model.toLowerCase() +
-                  "-" +
-                  form.values.finisaj.toLowerCase() +
-                  "-" +
-                  form.values.culoare +
-                  ".jpg"
+                  form.values.model && form.values.finisaj && form.values.culoare
+                    ? IMAGE_URL +
+                      form.values.model.toLowerCase() +
+                      "/" +
+                      form.values.model.toLowerCase() +
+                      "-" +
+                      form.values.finisaj.toLowerCase() +
+                      "-" +
+                      form.values.culoare +
+                      ".jpg"
+                    : PLACEHOLDER
                 }
               ></Image>
             </Container>

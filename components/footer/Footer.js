@@ -2,7 +2,7 @@ import React from "react";
 import { createStyles, Text, Anchor, Group, ActionIcon } from "@mantine/core";
 import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react";
 import { Links } from "./Links.js";
-import logo from "../../public/logo/VreauAcoperis-LogoOrizontal.png";
+import logo from "../../public/logo/VreauAcoperis-LogoVertical.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -46,7 +46,7 @@ function Footer() {
       <div className={classes.inner}>
         <Link href="/">
           <a>
-            <Image src={logo} width={100} height={100} layout="intrinsic" objectFit="contain" alt="Logo" />
+            <Image src={logo} width={80} height={80} layout="intrinsic" objectFit="contain" alt="Logo" />
           </a>
         </Link>
 
