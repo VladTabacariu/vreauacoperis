@@ -14,6 +14,7 @@ export default function App(props) {
     <>
       <Head>
         <title>vreauacoperis.ro</title>
+        <meta name="description" content="Vrei sa afli cat te costa acoperisul din tigla metalica? Nimic mai simplu! Te ajutam noi!" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
