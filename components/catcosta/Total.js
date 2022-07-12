@@ -123,7 +123,7 @@ function Total({ oferta, nextStep, prevStep }) {
                 <tr>
                   <th colSpan={4}>
                     <Text weight={700} align="left">
-                      {"Sistem pluvial - " + oferta.sistem_pluvial.dimensiune + " " + oferta.sistem_pluvial.culoare}
+                      {"Sistem pluvial - " + oferta.sistem_pluvial.dimensiune.toLowerCase() + " " + oferta.sistem_pluvial.culoare}
                     </Text>
                   </th>
                 </tr>

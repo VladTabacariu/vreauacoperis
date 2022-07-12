@@ -43,7 +43,7 @@ function Sistempluvial(props) {
       <Container>
         <Title>Sistem pluvial</Title>
         <Group>
-          {products.map((item) => {
+          {products?.map((item) => {
             const rand = 0;
             return (
               <Card key={randomId()} withBorder radius="md" p="md" className={classes.card}>
@@ -52,13 +52,7 @@ function Sistempluvial(props) {
                     width={200}
                     height={200}
                     src={
-                      IMAGE_URL +
-                      item.nume.toLowerCase().split(" ").join("-") +
-                      "/" +
-                      item.nume.toLowerCase().split(" ").join("-") +
-                      "-" +
-                      item.props.culori[rand] +
-                      ".jpg"
+                      IMAGE_URL + item.nume.toLowerCase().split(" ").join("-") + "/" + item.nume.toLowerCase().split(" ").join("-") + "-" + item.props.culori[rand] + ".jpg"
                     }
                     alt={item.nume}
                   />

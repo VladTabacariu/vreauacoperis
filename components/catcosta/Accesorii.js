@@ -160,7 +160,7 @@ function Accesorii({ oferta, setOferta, products, nextStep, prevStep }) {
                 })
               }
             >
-              Adauga piesa
+              Adauga accesoriu
             </Button>
           </Group>
           <Center mt={20}>

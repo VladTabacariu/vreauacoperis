@@ -197,7 +197,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
             </Group>
           ) : (
             <Text color="dimmed" align="center">
-              Adauga un accesoriu...
+              Adauga un element...
             </Text>
           )}
 
@@ -215,7 +215,7 @@ function SistemPluvial({ oferta, setOferta, products, nextStep, prevStep }) {
                 })
               }
             >
-              Adauga piesa
+              Adauga element
             </Button>
           </Group>
           <Center mt={20}>
