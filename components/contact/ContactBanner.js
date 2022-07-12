@@ -17,7 +17,7 @@ function ContactBanner() {
       <Text size="sm" weight={500} variant="link" component="a" href="tel:0745054808">
         0745054808
       </Text>
-      <Anchor href="https://www.facebook.com/vreauacoperis.ro" target="_blank">
+      <Anchor href="https://www.facebook.com/vreauacoperis.ro" target="_blank" inline>
         <ThemeIcon size="sm" radius="lg">
           <BrandFacebook size={18} />
         </ThemeIcon>
