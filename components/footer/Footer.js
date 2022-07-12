@@ -1,6 +1,6 @@
 import React from "react";
 import { createStyles, Text, Anchor, Group, ActionIcon } from "@mantine/core";
-import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react";
+import { BrandTwitter, BrandYoutube, BrandInstagram, BrandFacebook } from "tabler-icons-react";
 import { Links } from "./Links.js";
 import logo from "../../public/logo/VreauAcoperis-LogoVertical.png";
 import Image from "next/image";
@@ -53,6 +53,11 @@ function Footer() {
         <Group className={classes.links}>{items}</Group>
 
         <Group spacing={0} position="right" noWrap>
+          <ActionIcon size="lg">
+            <Anchor href="https://www.facebook.com/vreauacoperis.ro" target="_blank">
+              <BrandFacebook size={18} />
+            </Anchor>
+          </ActionIcon>
           <ActionIcon size="lg">
             <BrandTwitter size={18} />
           </ActionIcon>
