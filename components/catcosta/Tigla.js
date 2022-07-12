@@ -20,11 +20,7 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     setFinisaje(jsonata("$distinct(*[grup='tabla'].props[model='" + oferta.tigla.model + "'][].finisaj)").evaluate(products));
   }
   if (oferta.tigla.finisaj && grosimi.length == 0) {
-    setGrosimi(
-      jsonata(
-        "$distinct(*[grup='tabla'].props[(model='" + oferta.tigla.model + "') and (finisaj='" + oferta.tigla.finisaj + "')][].grosime)"
-      ).evaluate(products)
-    );
+    setGrosimi(jsonata("$distinct(*[grup='tabla'].props[(model='" + oferta.tigla.model + "') and (finisaj='" + oferta.tigla.finisaj + "')][].grosime)").evaluate(products));
   }
   if (oferta.tigla.grosime && culori.length == 0) {
     setCulori(
@@ -58,21 +54,11 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     const pret = 0;
     const total = 0;
     finisaje = jsonata("$distinct(*[grup='tabla'].props[model='" + model + "'][].finisaj)").evaluate(products);
-    grosimi = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "')][].grosime)").evaluate(
+    grosimi = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "')][].grosime)").evaluate(products);
+    culori = jsonata("$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "') and (grosime='" + grosime + "')][].culori)").evaluate(products);
+    pret = jsonata("*[(grup='tabla') and (props.model='" + model + "') and (props.finisaj='" + finisaj + "') and (props.grosime='" + grosime + "')].pret_lista").evaluate(
       products
     );
-    culori = jsonata(
-      "$distinct(*[grup='tabla'].props[(model='" + model + "') and (finisaj='" + finisaj + "') and (grosime='" + grosime + "')][].culori)"
-    ).evaluate(products);
-    pret = jsonata(
-      "*[(grup='tabla') and (props.model='" +
-        model +
-        "') and (props.finisaj='" +
-        finisaj +
-        "') and (props.grosime='" +
-        grosime +
-        "')].pret_lista"
-    ).evaluate(products);
     total = suprafata * pret;
     if (finisaje) {
       if (!finisaje.includes(finisaj)) {
@@ -160,7 +146,7 @@ const Tigla = ({ oferta, setOferta, products, nextStep, prevStep }) => {
     let total = 0;
     piese.forEach((item) => {
       pret = jsonata(
-        "*[(grup='piese_finisaj') and (nume='" +
+        "*[(grup='piese_finisaj') and (props.model='" +
           item.nume +
           "') and (props.finisaj='" +
           oferta.piese_finisaj.finisaj +

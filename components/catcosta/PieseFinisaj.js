@@ -7,7 +7,7 @@ import { Trash, AlertCircle } from "tabler-icons-react";
 
 const IMAGE_URL = "/assets/bilka/piese_finisaj/";
 function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
-  const nume_piese = jsonata("$distinct(*[grup='piese_finisaj'].nume)").evaluate(products);
+  const nume_piese = jsonata("$distinct(*[grup='piese_finisaj'].props.model)").evaluate(products);
   const form = useForm({
     initialValues: {
       piese: formList(oferta.piese_finisaj.piese),
@@ -25,15 +25,18 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
     const total = 0;
     const piese = [];
     if (nume && cantitate >= 0) {
-      pret = jsonata(
-        "*[(grup='piese_finisaj') and (nume='" +
-          nume +
-          "') and (props.finisaj='" +
-          oferta.piese_finisaj.finisaj +
-          "') and(props.grosime='" +
-          oferta.piese_finisaj.grosime +
-          "')].pret_lista"
-      ).evaluate(products);
+      pret =
+        jsonata(
+          "*[(grup='piese_finisaj') and (props.model='" +
+            nume +
+            "') and (props.finisaj='" +
+            oferta.piese_finisaj.finisaj +
+            "') and(props.grosime='" +
+            oferta.piese_finisaj.grosime +
+            "')].pret_lista"
+        ).evaluate(products) *
+        5 *
+        1.19;
 
       form.setListItem("piese", index, {
         nume: nume,
