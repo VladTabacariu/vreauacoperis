@@ -69,7 +69,7 @@ const HeaderAction = () => {
       return (
         <Menu
           key={link.label}
-          trigger="hover"
+          trigger="click"
           delay={0}
           transitionDuration={0}
           placement="end"
@@ -121,7 +121,12 @@ const HeaderAction = () => {
           </Button>
         </Link>
       </Container>
-      <Drawer opened={opened} onClose={() => toggleOpened()} title="Menu" padding="xl" size="lg">
+      <Drawer opened={opened} onClose={() => toggleOpened()} title="Menu" padding="xl" size="sm">
+        <Link href="/">
+          <a>
+            <Image src={logo} layout="intrinsic" objectFit="contain" alt="Logo" />
+          </a>
+        </Link>
         {items}
       </Drawer>
     </Header>
