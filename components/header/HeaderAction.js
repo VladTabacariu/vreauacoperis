@@ -60,7 +60,7 @@ const HeaderAction = () => {
   const items = Links.map((link) => {
     const menuItems = link.links?.map((item) => (
       <Link key={item.link} href={item.link} passHref>
-        <Menu.Item key={item.link}>
+        <Menu.Item key={item.link} onClick={() => toggleOpened()}>
           <a>{item.label}</a>
         </Menu.Item>
       </Link>
@@ -90,7 +90,9 @@ const HeaderAction = () => {
 
     return (
       <Link key={link.label} href={link.link}>
-        <a className={classes.link}>{link.label}</a>
+        <a className={classes.link} onClick={() => toggleOpened()}>
+          {link.label}
+        </a>
       </Link>
     );
   });
