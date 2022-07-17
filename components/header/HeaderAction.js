@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/logo/VreauAcoperis-LogoOrizontal.png";
 import { ChevronDown } from "tabler-icons-react";
-import { createStyles, Menu, Center, Header, Container, Group, Button, Burger, Drawer } from "@mantine/core";
-import { useBooleanToggle } from "@mantine/hooks";
+import { createStyles, useMantineTheme, Menu, Center, Header, Container, Group, Button, Burger, Drawer } from "@mantine/core";
+import { useBooleanToggle, useMediaQuery } from "@mantine/hooks";
 import ContactBanner from "../contact/ContactBanner.js";
 
 const HEADER_HEIGHT = 110;
@@ -55,12 +55,14 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const HeaderAction = () => {
+  const theme = useMantineTheme();
+  const matches = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`, false);
   const { classes } = useStyles();
   const [opened, toggleOpened] = useBooleanToggle(false);
   const items = Links.map((link) => {
     const menuItems = link.links?.map((item) => (
       <Link key={item.link} href={item.link} passHref>
-        <Menu.Item key={item.link} onClick={() => toggleOpened()}>
+        <Menu.Item key={item.link} onClick={() => (matches ? toggleOpened() : null)}>
           <a>{item.label}</a>
         </Menu.Item>
       </Link>
@@ -90,7 +92,7 @@ const HeaderAction = () => {
 
     return (
       <Link key={link.label} href={link.link}>
-        <a className={classes.link} onClick={() => toggleOpened()}>
+        <a className={classes.link} onClick={() => (matches ? toggleOpened() : null)}>
           {link.label}
         </a>
       </Link>
