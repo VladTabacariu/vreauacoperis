@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
   social: {
     position: "fixed",
     right: "40px",
-    bottom: "40px",
+    bottom: "20px",
     zIndex: 100,
   },
 }));
