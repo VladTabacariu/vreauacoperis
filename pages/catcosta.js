@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Stepper } from "@mantine/core";
 import { supabase } from "../utils/supabaseClient";
+import Start from "../components/catcosta/Start.js";
 import Tigla from "../components/catcosta/Tigla.js";
 import PieseFinisaj from "../components/catcosta/PieseFinisaj.js";
 import Accesorii from "../components/catcosta/Accesorii.js";
