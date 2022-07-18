@@ -170,7 +170,7 @@ function PieseFinisaj({ oferta, setOferta, products, nextStep, prevStep }) {
           {fields.length > 0 ? (
             <Group mb="xs">
               <Text weight={500} size="sm" sx={{ flex: 3 }}>
-                Nume
+                Denumire
               </Text>
               <Text weight={500} size="sm" sx={{ flex: 1 }}>
                 Cantitate
